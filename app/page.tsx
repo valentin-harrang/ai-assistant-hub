@@ -51,6 +51,15 @@ const features = [
     badgeVariant: "outline" as const,
     gradient: "from-purple-500 to-pink-500",
   },
+  {
+    title: "Ressources",
+    description: "Bibliothèques et outils recommandés",
+    href: "/ressources",
+    icon: BookOpen,
+    badge: "SSG",
+    badgeVariant: "outline" as const,
+    gradient: "from-indigo-500 to-purple-500",
+  },
 ];
 
 export default function Home() {

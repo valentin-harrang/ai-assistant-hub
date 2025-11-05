@@ -1,0 +1,646 @@
+import type { LucideIcon } from "lucide-react";
+import {
+  BookOpen,
+  Zap,
+  Database,
+  Table,
+  Layers,
+  Bell,
+  Package,
+  Palette,
+  Globe,
+  Wrench,
+  FileEdit,
+  CheckSquare,
+  Sparkles,
+  Moon,
+  Shield,
+  Settings,
+} from "lucide-react";
+
+export interface Ressource {
+  slug: string;
+  name: string;
+  category: string;
+  icon: LucideIcon;
+  description: string;
+  longDescription: string;
+  website: string;
+  npmPackage?: string;
+  useCases: string[];
+  features: string[];
+  color: {
+    bg: string;
+    bgDark: string;
+    text: string;
+    textDark: string;
+  };
+}
+
+export const ressources: Ressource[] = [
+  {
+    slug: "nuqs",
+    name: "Nuqs",
+    category: "State Management",
+    icon: Zap,
+    description: "Gestion d'état URL type-safe pour Next.js",
+    longDescription:
+      "Nuqs est une bibliothèque qui permet de gérer l'état de l'URL de manière type-safe dans Next.js. Elle remplace useSearchParams avec une API beaucoup plus simple et type-safe, permettant de synchroniser l'état de l'application avec l'URL.",
+    website: "https://nuqs.47ng.com",
+    npmPackage: "nuqs",
+    useCases: [
+      "Filtres de recherche partageables via URL",
+      "Pagination avec URL synchronisée",
+      "Tabs avec deep linking",
+      "État de tri partageable",
+    ],
+    features: [
+      "Type-safe avec TypeScript",
+      "Synchronisation automatique URL/état",
+      "SSR compatible",
+      "Support des tableaux et objets",
+      "Parsing personnalisable",
+    ],
+    color: {
+      bg: "bg-blue-100",
+      bgDark: "dark:bg-blue-900/30",
+      text: "text-blue-600",
+      textDark: "dark:text-blue-400",
+    },
+  },
+  {
+    slug: "lucide",
+    name: "Lucide",
+    category: "Icons",
+    icon: Sparkles,
+    description: "Bibliothèque d'icônes open-source moderne",
+    longDescription:
+      "Lucide est une bibliothèque d'icônes open-source avec plus de 1000 icônes. Elle est inspirée de Feather Icons et offre des icônes SVG légères et personnalisables.",
+    website: "https://lucide.dev",
+    npmPackage: "@lucide/react",
+    useCases: [
+      "Icônes pour interfaces utilisateur",
+      "Icônes de navigation",
+      "Icônes d'actions",
+      "Icônes de statut",
+    ],
+    features: [
+      "1000+ icônes disponibles",
+      "Tree-shakable",
+      "Personnalisable (taille, couleur, stroke)",
+      "TypeScript support",
+      "Accessible par défaut",
+    ],
+    color: {
+      bg: "bg-purple-100",
+      bgDark: "dark:bg-purple-900/30",
+      text: "text-purple-600",
+      textDark: "dark:text-purple-400",
+    },
+  },
+  {
+    slug: "tanstack-query",
+    name: "TanStack Query",
+    category: "Data Fetching",
+    icon: Database,
+    description: "Gestion d'état serveur puissante et flexible",
+    longDescription:
+      "TanStack Query (anciennement React Query) est une bibliothèque de gestion d'état serveur qui simplifie la récupération, la mise en cache, la synchronisation et la mise à jour des données serveur dans vos applications React.",
+    website: "https://tanstack.com/query",
+    npmPackage: "@tanstack/react-query",
+    useCases: [
+      "Récupération de données API",
+      "Cache et invalidation automatique",
+      "Mise à jour optimiste",
+      "Synchronisation en arrière-plan",
+      "Gestion du loading et des erreurs",
+    ],
+    features: [
+      "Cache automatique intelligent",
+      "Invalidation et refetch automatiques",
+      "Déduplication des requêtes",
+      "Background updates",
+      "Pagination et infinite scroll",
+      "DevTools inclus",
+    ],
+    color: {
+      bg: "bg-cyan-100",
+      bgDark: "dark:bg-cyan-900/30",
+      text: "text-cyan-600",
+      textDark: "dark:text-cyan-400",
+    },
+  },
+  {
+    slug: "tanstack-table",
+    name: "TanStack Table",
+    category: "Tables",
+    icon: Table,
+    description: "Bibliothèque de tableaux headless et puissante",
+    longDescription:
+      "TanStack Table est une bibliothèque headless pour construire des tableaux puissants et personnalisables. Elle gère la logique complexe (tri, filtrage, pagination) tout en vous laissant contrôler le rendu.",
+    website: "https://tanstack.com/table",
+    npmPackage: "@tanstack/react-table",
+    useCases: [
+      "Tableaux de données complexes",
+      "Tri et filtrage avancés",
+      "Pagination personnalisée",
+      "Sélection de lignes",
+      "Colonnes resizables",
+    ],
+    features: [
+      "Headless (contrôle total du rendu)",
+      "Tri, filtrage, pagination",
+      "Sélection de lignes",
+      "Colonnes groupées",
+      "Virtualisation",
+      "TypeScript complet",
+    ],
+    color: {
+      bg: "bg-emerald-100",
+      bgDark: "dark:bg-emerald-900/30",
+      text: "text-emerald-600",
+      textDark: "dark:text-emerald-400",
+    },
+  },
+  {
+    slug: "radix-ui",
+    name: "Radix UI",
+    category: "UI Components",
+    icon: Layers,
+    description: "Primitives UI accessibles et unstyled",
+    longDescription:
+      "Radix UI fournit des primitives UI accessibles et unstyled pour React. Chaque composant est entièrement accessible, personnalisable et peut être stylé avec n'importe quelle solution CSS.",
+    website: "https://www.radix-ui.com",
+    npmPackage: "@radix-ui/react-*",
+    useCases: [
+      "Composants accessibles (ARIA)",
+      "Modals et dialogs",
+      "Dropdowns et selects",
+      "Tooltips et popovers",
+      "Tabs et accordions",
+    ],
+    features: [
+      "100% accessible (WAI-ARIA)",
+      "Unstyled (styling total)",
+      "Keyboard navigation",
+      "Focus management",
+      "Portal rendering",
+      "TypeScript",
+    ],
+    color: {
+      bg: "bg-violet-100",
+      bgDark: "dark:bg-violet-900/30",
+      text: "text-violet-600",
+      textDark: "dark:text-violet-400",
+    },
+  },
+  {
+    slug: "sonner",
+    name: "Sonner",
+    category: "Notifications",
+    icon: Bell,
+    description: "Toasts React élégants et personnalisables",
+    longDescription:
+      "Sonner est une bibliothèque de notifications toast pour React. Elle offre une API simple, des animations fluides et une personnalisation complète.",
+    website: "https://sonner.emilkowal.ski",
+    npmPackage: "sonner",
+    useCases: [
+      "Notifications de succès",
+      "Messages d'erreur",
+      "Notifications d'information",
+      "Confirmations d'actions",
+    ],
+    features: [
+      "API simple et intuitive",
+      "Animations fluides",
+      "Personnalisable",
+      "Support du dark mode",
+      "Position personnalisable",
+      "Promise support",
+    ],
+    color: {
+      bg: "bg-amber-100",
+      bgDark: "dark:bg-amber-900/30",
+      text: "text-amber-600",
+      textDark: "dark:text-amber-400",
+    },
+  },
+  {
+    slug: "jotai",
+    name: "Jotai",
+    category: "State Management",
+    icon: Package,
+    description: "Gestion d'état atomique pour React",
+    longDescription:
+      "Jotai est une bibliothèque de gestion d'état atomique pour React. Elle utilise une approche atomique où chaque état est défini comme un atome, permettant une granularité fine et une performance optimale.",
+    website: "https://jotai.org",
+    npmPackage: "jotai",
+    useCases: [
+      "État global atomique",
+      "État partagé entre composants",
+      "État persistant (localStorage)",
+      "État dérivé",
+    ],
+    features: [
+      "Approche atomique",
+      "Re-renders optimisés",
+      "TypeScript",
+      "DevTools",
+      "Persistance (localStorage, etc.)",
+      "Intégration avec React Suspense",
+    ],
+    color: {
+      bg: "bg-indigo-100",
+      bgDark: "dark:bg-indigo-900/30",
+      text: "text-indigo-600",
+      textDark: "dark:text-indigo-400",
+    },
+  },
+  {
+    slug: "zustand",
+    name: "Zustand",
+    category: "State Management",
+    icon: Package,
+    description: "Gestion d'état légère et simple",
+    longDescription:
+      "Zustand est une bibliothèque de gestion d'état légère et simple pour React. Elle offre une API minimale sans boilerplate, parfaite pour les applications de taille moyenne.",
+    website: "https://zustand-demo.pmnd.rs",
+    npmPackage: "zustand",
+    useCases: [
+      "État global simple",
+      "Store centralisé",
+      "Persistance (middleware)",
+      "Actions et selectors",
+    ],
+    features: [
+      "API simple et intuitive",
+      "Léger (< 1KB)",
+      "Pas de Provider requis",
+      "TypeScript",
+      "DevTools support",
+      "Middleware (persist, etc.)",
+    ],
+    color: {
+      bg: "bg-pink-100",
+      bgDark: "dark:bg-pink-900/30",
+      text: "text-pink-600",
+      textDark: "dark:text-pink-400",
+    },
+  },
+  {
+    slug: "shadcn",
+    name: "ShadCn UI",
+    category: "UI Components",
+    icon: Palette,
+    description: "Composants re-utilisables basés sur Radix UI",
+    longDescription:
+      "ShadCn UI n'est pas un package npm, mais une collection de composants que vous copiez dans votre projet. Basés sur Radix UI et Tailwind CSS, ils sont entièrement personnalisables et accessibles.",
+    website: "https://ui.shadcn.com",
+    useCases: [
+      "Composants UI accessibles",
+      "Design system cohérent",
+      "Composants personnalisables",
+      "Intégration avec Tailwind CSS",
+    ],
+    features: [
+      "Composants accessibles",
+      "Basés sur Radix UI",
+      "Stylés avec Tailwind CSS",
+      "Vous possédez le code",
+      "Personnalisable",
+      "TypeScript",
+    ],
+    color: {
+      bg: "bg-slate-100",
+      bgDark: "dark:bg-slate-900/30",
+      text: "text-slate-600",
+      textDark: "dark:text-slate-400",
+    },
+  },
+  {
+    slug: "tailwindcss",
+    name: "Tailwind CSS",
+    category: "Styling",
+    icon: Palette,
+    description: "Framework CSS utility-first",
+    longDescription:
+      "Tailwind CSS est un framework CSS utility-first qui permet de construire rapidement des interfaces modernes en utilisant des classes utilitaires.",
+    website: "https://tailwindcss.com",
+    npmPackage: "tailwindcss",
+    useCases: [
+      "Styling rapide",
+      "Design systems",
+      "Responsive design",
+      "Dark mode",
+    ],
+    features: [
+      "Utility-first",
+      "Purge automatique",
+      "Dark mode",
+      "Responsive design",
+      "Personnalisable",
+      "Plugins",
+    ],
+    color: "cyan",
+  },
+  {
+    slug: "next-intl",
+    name: "Next-Intl",
+    category: "Internationalization",
+    icon: Globe,
+    description: "Internationalisation pour Next.js",
+    longDescription:
+      "Next-Intl est une bibliothèque d'internationalisation pour Next.js qui permet de gérer facilement les traductions et la localisation de votre application.",
+    website: "https://next-intl-docs.vercel.app",
+    npmPackage: "next-intl",
+    useCases: [
+      "Applications multilingues",
+      "Traductions",
+      "Formatage de dates/nombres",
+      "Routage par langue",
+    ],
+    features: [
+      "Support SSR/SSG",
+      "Type-safe",
+      "Formatage automatique",
+      "Routage par langue",
+      "Lazy loading des traductions",
+    ],
+    color: "blue",
+  },
+  {
+    slug: "usehooks-ts",
+    name: "usehooks-ts",
+    category: "Hooks",
+    icon: Wrench,
+    description: "Collection de hooks React TypeScript",
+    longDescription:
+      "usehooks-ts est une collection de hooks React utiles écrits en TypeScript. Elle offre des hooks pour des cas d'usage courants comme localStorage, debounce, etc.",
+    website: "https://usehooks-ts.com",
+    npmPackage: "usehooks-ts",
+    useCases: [
+      "Hooks utilitaires",
+      "localStorage/sessionStorage",
+      "Debounce/throttle",
+      "Media queries",
+      "Intersection observer",
+    ],
+    features: [
+      "TypeScript",
+      "Tree-shakable",
+      "Hooks testés",
+      "Documentation complète",
+    ],
+    color: {
+      bg: "bg-orange-100",
+      bgDark: "dark:bg-orange-900/30",
+      text: "text-orange-600",
+      textDark: "dark:text-orange-400",
+    },
+  },
+  {
+    slug: "react-hook-form",
+    name: "React Hook Form",
+    category: "Forms",
+    icon: FileEdit,
+    description: "Gestion de formulaires performante",
+    longDescription:
+      "React Hook Form est une bibliothèque de gestion de formulaires pour React qui minimise les re-renders et offre une excellente performance grâce à l'utilisation de refs non contrôlées.",
+    website: "https://react-hook-form.com",
+    npmPackage: "react-hook-form",
+    useCases: [
+      "Formulaires complexes",
+      "Validation",
+      "Performance optimale",
+      "Intégration avec Zod",
+    ],
+    features: [
+      "Performance optimale",
+      "Validation intégrée",
+      "Intégration Zod/Yup",
+      "TypeScript",
+      "DevTools",
+      "Accessible",
+    ],
+    color: {
+      bg: "bg-red-100",
+      bgDark: "dark:bg-red-900/30",
+      text: "text-red-600",
+      textDark: "dark:text-red-400",
+    },
+  },
+  {
+    slug: "zod",
+    name: "Zod",
+    category: "Validation",
+    icon: CheckSquare,
+    description: "Validation TypeScript-first avec inference",
+    longDescription:
+      "Zod est une bibliothèque de validation TypeScript-first qui permet de définir des schémas de validation et d'inférer automatiquement les types TypeScript.",
+    website: "https://zod.dev",
+    npmPackage: "zod",
+    useCases: [
+      "Validation de formulaires",
+      "Validation d'API",
+      "Type inference",
+      "Parsing de données",
+    ],
+    features: [
+      "Type-safe",
+      "Type inference",
+      "Composable",
+      "Erreurs détaillées",
+      "Intégration avec React Hook Form",
+    ],
+    color: {
+      bg: "bg-green-100",
+      bgDark: "dark:bg-green-900/30",
+      text: "text-green-600",
+      textDark: "dark:text-green-400",
+    },
+  },
+  {
+    slug: "onboarda",
+    name: "Onboarda",
+    category: "Onboarding",
+    icon: Sparkles,
+    description: "Bibliothèque d'onboarding interactive",
+    longDescription:
+      "Onboarda est une bibliothèque pour créer des expériences d'onboarding interactives, des tooltips guidés et des tours de fonctionnalités.",
+    website: "https://onboarda.dev",
+    npmPackage: "onboarda",
+    useCases: [
+      "Tours de fonctionnalités",
+      "Onboarding utilisateurs",
+      "Tooltips guidés",
+      "Popovers interactifs",
+    ],
+    features: [
+      "API simple",
+      "Personnalisable",
+      "Animations fluides",
+      "Keyboard navigation",
+      "Accessible",
+    ],
+    color: {
+      bg: "bg-purple-100",
+      bgDark: "dark:bg-purple-900/30",
+      text: "text-purple-600",
+      textDark: "dark:text-purple-400",
+    },
+  },
+  {
+    slug: "storybook",
+    name: "Storybook",
+    category: "Development",
+    icon: BookOpen,
+    description: "Environnement de développement pour composants UI",
+    longDescription:
+      "Storybook est un outil de développement pour créer et tester des composants UI de manière isolée. Il permet de documenter, tester et développer des composants indépendamment de l'application.",
+    website: "https://storybook.js.org",
+    npmPackage: "@storybook/react",
+    useCases: [
+      "Développement de composants isolés",
+      "Documentation de composants",
+      "Tests visuels",
+      "Design system",
+    ],
+    features: [
+      "Développement isolé",
+      "Documentation interactive",
+      "Tests visuels",
+      "Addons",
+      "Intégration CI/CD",
+    ],
+    color: {
+      bg: "bg-pink-100",
+      bgDark: "dark:bg-pink-900/30",
+      text: "text-pink-600",
+      textDark: "dark:text-pink-400",
+    },
+  },
+  {
+    slug: "next-themes",
+    name: "next-themes",
+    category: "Styling",
+    icon: Moon,
+    description: "Gestion du thème (dark mode) pour Next.js",
+    longDescription:
+      "next-themes est une bibliothèque qui permet de gérer facilement le thème (light/dark mode) dans les applications Next.js. Elle gère la persistance du thème, évite les flashs de contenu et offre une API simple.",
+    website: "https://github.com/pacocoursey/next-themes",
+    npmPackage: "next-themes",
+    useCases: [
+      "Dark mode / Light mode",
+      "Thème système automatique",
+      "Persistance du thème",
+      "Toggle de thème",
+    ],
+    features: [
+      "Pas de flash de contenu (FOUC)",
+      "Support SSR",
+      "Persistance (localStorage)",
+      "Détection du thème système",
+      "API simple",
+      "TypeScript",
+    ],
+    color: {
+      bg: "bg-slate-100",
+      bgDark: "dark:bg-slate-900/30",
+      text: "text-slate-600",
+      textDark: "dark:text-slate-400",
+    },
+  },
+  {
+    slug: "t3-env",
+    name: "t3-env",
+    category: "Development",
+    icon: Settings,
+    description: "Variables d'environnement type-safe avec validation",
+    longDescription:
+      "t3-env est une bibliothèque qui permet de gérer les variables d'environnement de manière type-safe avec validation Zod. Elle garantit que toutes les variables nécessaires sont présentes et valides au build time.",
+    website: "https://env.t3.gg",
+    npmPackage: "@t3-oss/env-nextjs",
+    useCases: [
+      "Validation des variables d'environnement",
+      "Type safety pour les env vars",
+      "Erreurs au build time",
+      "Documentation automatique",
+    ],
+    features: [
+      "Type-safe avec TypeScript",
+      "Validation avec Zod",
+      "Erreurs au build time",
+      "Support Next.js / Nuxt / Vite",
+      "Séparation client/server",
+      "Documentation automatique",
+    ],
+    color: {
+      bg: "bg-amber-100",
+      bgDark: "dark:bg-amber-900/30",
+      text: "text-amber-600",
+      textDark: "dark:text-amber-400",
+    },
+  },
+  {
+    slug: "better-auth",
+    name: "Better Auth",
+    category: "Authentication",
+    icon: Shield,
+    description: "Bibliothèque d'authentification moderne et type-safe",
+    longDescription:
+      "Better Auth est une bibliothèque d'authentification complète et moderne pour Next.js et autres frameworks. Elle offre une API type-safe, supporte de nombreux providers (OAuth, email/password, etc.) et est entièrement personnalisable.",
+    website: "https://better-auth.com",
+    npmPackage: "better-auth",
+    useCases: [
+      "Authentification email/password",
+      "OAuth (Google, GitHub, etc.)",
+      "Gestion de sessions",
+      "2FA (Two-Factor Authentication)",
+      "Mise à jour de profil",
+    ],
+    features: [
+      "Type-safe avec TypeScript",
+      "Support OAuth multiple",
+      "Email/password",
+      "2FA",
+      "Sessions sécurisées",
+      "Middleware Next.js",
+      "Personnalisable",
+      "SSR support",
+    ],
+    color: {
+      bg: "bg-blue-100",
+      bgDark: "dark:bg-blue-900/30",
+      text: "text-blue-600",
+      textDark: "dark:text-blue-400",
+    },
+  },
+];
+
+export const categories = [
+  "State Management",
+  "Data Fetching",
+  "UI Components",
+  "Forms",
+  "Validation",
+  "Styling",
+  "Icons",
+  "Notifications",
+  "Internationalization",
+  "Hooks",
+  "Onboarding",
+  "Development",
+  "Tables",
+  "Authentication",
+] as const;
+
+export function getRessourceBySlug(slug: string): Ressource | undefined {
+  return ressources.find((r) => r.slug === slug);
+}
+
+export function getRessourcesByCategory(
+  category: string
+): Ressource[] {
+  return ressources.filter((r) => r.category === category);
+}
+

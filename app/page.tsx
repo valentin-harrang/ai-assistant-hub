@@ -6,7 +6,7 @@ import { FeatureCard } from "@/app/components/shared/feature-card";
 const features = [
   {
     title: "Chatbot Interactif",
-    description: "Discutez en temps réel avec l'IA grâce au streaming",
+    description: "Chat IA en temps réel avec streaming et rendu Markdown",
     href: "/chat",
     icon: MessageSquare,
     badge: "CSR",
@@ -15,7 +15,7 @@ const features = [
   },
   {
     title: "Générateur d'Idées",
-    description: "Créez des prompts professionnels pour vos projets IA",
+    description: "Génération de contenu IA côté serveur à chaque requête",
     href: "/prompts",
     icon: Lightbulb,
     badge: "SSR",
@@ -24,7 +24,7 @@ const features = [
   },
   {
     title: "À Propos",
-    description: "Découvrez comment cette application fonctionne",
+    description: "Page statique avec informations sur le projet",
     href: "/about",
     icon: Info,
     badge: "SSG",
@@ -44,8 +44,8 @@ export default function Home() {
           </h1>
         </div>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Découvrez trois façons d&apos;intégrer l&apos;IA avec Next.js :
-          Client-Side Rendering, Server-Side Rendering et Static Site Generation
+          Découvrez l&apos;intégration de l&apos;IA avec Next.js et les
+          différents modes de rendu : CSR, SSR et SSG
         </p>
       </div>
 

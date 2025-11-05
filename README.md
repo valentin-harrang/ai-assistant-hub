@@ -1,20 +1,36 @@
 # 🤖 AI Assistant Hub
 
-Projet Next.js démontrant trois façons d'intégrer l'IA avec le **AI SDK** de Vercel.
+Projet Next.js démontrant l'intégration de l'IA avec le **AI SDK** de Vercel et les différents modes de rendu de Next.js.
 
 ## 🎯 Objectifs
 
-- **CSR (Client-Side Rendering)** : Chat interactif en temps réel
-- **SSR (Server-Side Rendering)** : Génération de texte côté serveur
-- **SSG (Static Site Generation)** : Pages statiques
+- **CSR (Client-Side Rendering)** : Chat interactif en temps réel avec streaming IA
+- **SSR (Server-Side Rendering)** : Génération de contenu IA côté serveur
+- **SSG (Static Site Generation)** : Page statique (À propos)
+
+## ✨ Fonctionnalités
+
+- 💬 **Chat streaming** : Réponses IA en temps réel avec `useChat`
+- 🧠 **Filtrage du raisonnement** : Masque automatiquement les balises `<think>` de l'IA
+- 📝 **Rendu Markdown** : Affichage enrichi des réponses (titres, listes, code, etc.)
+- 🌓 **Dark mode** : Bascule automatique entre thème clair et sombre
+- 🎨 **Design moderne** : Interface élégante avec ShadCn UI et animations
+- ♿ **Accessibilité** : Composants basés sur Radix UI (ARIA, keyboard navigation)
+- 📱 **Responsive** : S'adapte à tous les écrans (mobile, tablette, desktop)
+- 🔄 **Auto-scroll** : Le chat descend automatiquement au nouveau message
+- 🎯 **TypeScript strict** : Typage fort, **aucun `any`** autorisé
 
 ## 🛠️ Stack Technique
 
-- **Framework** : [Next.js 16](https://nextjs.org) (App Router)
+- **Framework** : [Next.js 16](https://nextjs.org) (App Router, React 19)
 - **IA** : [Vercel AI SDK](https://ai-sdk.dev) avec Groq (Mixtral)
-- **Language** : TypeScript (strict mode)
+- **Language** : TypeScript (strict mode, NO `any`)
 - **Styling** : Tailwind CSS 4
+- **UI Components** : [ShadCn UI](https://ui.shadcn.com/) (Radix UI + Tailwind)
+- **Dark Mode** : [next-themes](https://github.com/pacocoursey/next-themes)
+- **Icons** : [Lucide React](https://lucide.dev/)
 - **State Management** : React hooks (`useState`, `useChat`)
+- **Data Fetching** : TanStack Query (React Query)
 
 ## 📦 Installation
 
@@ -105,23 +121,31 @@ app/
 
 ## 🎨 Pages
 
-### 1. Chat (CSR) - `/chat`
+### 1. 🏠 Accueil - `/`
 
-- Utilise `useChat` de `@ai-sdk/react`
-- Streaming en temps réel
-- State management avec `useState`
-- Messages typés avec TypeScript
+- Page d'accueil moderne avec ShadCn UI
+- Cards avec animations et gradients
+- Dark mode toggle
 
-### 2. Générateur d'idées (SSR) - `/prompts`
+### 2. 💬 Chat Interactif (CSR) - `/chat`
 
-- Server Component Next.js
-- Génération côté serveur avec `generateText`
-- Rendu à chaque requête
+- **Utilise l'IA** : Streaming en temps réel avec `useChat` de `@ai-sdk/react`
+- Filtrage automatique du raisonnement de l'IA (`<think>`)
+- Rendu Markdown des réponses
+- Auto-scroll et state management local
 
-### 3. À propos (SSG) - `/about`
+### 3. 💡 Générateur d'Idées (SSR) - `/prompts`
 
-- Page statique
-- Génération à la build
+- **Utilise l'IA** : Génération côté serveur avec `generateText`
+- Rendu à chaque requête (Server-Side Rendering)
+- Affichage du raisonnement et du contenu dans des accordéons
+- Bouton pour régénérer de nouvelles idées
+
+### 4. ℹ️ À Propos (SSG) - `/about`
+
+- Page statique (Static Site Generation)
+- **N'utilise pas l'IA** : Contenu fixe généré au build
+- Informations sur le projet
 
 ## 🧪 Commandes
 

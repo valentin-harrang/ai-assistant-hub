@@ -1,8 +1,8 @@
 // 🎓 CSR - Client-Side Rendering
-// Cette page charge les données côté client avec useState et useEffect
+// Cette page charge les données côté client avec TanStack Query
 "use client";
 
-import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { PageContainer } from "@/components/shared/page-container";
 import { PageHeader } from "@/components/shared/page-header";
 import { GoHome } from "@/components/shared/go-home";
@@ -11,40 +11,32 @@ import { Button } from "@/components/ui/button";
 import { Loader2, Sparkles, RefreshCw } from "lucide-react";
 import { MarkdownContent } from "@/components/shared/markdown-content";
 
+// 🎓 Fonction pour charger le fun fact depuis l'API
+async function fetchFunFact(): Promise<string> {
+  const response = await fetch("/api/fun-fact");
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.error || "Erreur lors du chargement du fun fact");
+  }
+
+  return data.funFact;
+}
+
 export default function FunFactPage() {
-  const [funFact, setFunFact] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  // 🎓 Fonction pour charger le fun fact depuis l'API
-  const fetchFunFact = async () => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const response = await fetch("/api/fun-fact");
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Erreur lors du chargement du fun fact");
-      }
-
-      setFunFact(data.funFact);
-    } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : "Une erreur est survenue lors du chargement du fun fact"
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // 🎓 Charger le fun fact au montage du composant
-  useEffect(() => {
-    fetchFunFact();
-  }, []);
+  // 🎓 Utiliser TanStack Query pour gérer les données serveur
+  // Single source of truth, cache automatique, gestion d'erreurs intégrée
+  const {
+    data: funFact,
+    isLoading,
+    error,
+    refetch,
+    isRefetching,
+  } = useQuery({
+    queryKey: ["fun-fact"],
+    queryFn: fetchFunFact,
+    staleTime: 0, // Toujours considérer comme stale pour forcer un nouveau fun fact
+  });
 
   return (
     <PageContainer>
@@ -59,7 +51,7 @@ export default function FunFactPage() {
 
       {/* Contenu principal */}
       <div className="space-y-6">
-        {loading && (
+        {isLoading && (
           <Card className="p-12 text-center">
             <Loader2 className="size-8 animate-spin text-blue-500 mx-auto mb-4" />
             <p className="text-muted-foreground">
@@ -71,18 +63,32 @@ export default function FunFactPage() {
         {error && (
           <Card className="p-6 border-destructive bg-destructive/10">
             <div className="text-center">
-              <p className="text-destructive font-semibold mb-4">
-                ⚠️ Erreur
+              <p className="text-destructive font-semibold mb-4">⚠️ Erreur</p>
+              <p className="text-sm text-muted-foreground mb-4">
+                {error instanceof Error
+                  ? error.message
+                  : "Une erreur est survenue lors du chargement du fun fact"}
               </p>
-              <p className="text-sm text-muted-foreground mb-4">{error}</p>
-              <Button onClick={fetchFunFact} variant="outline" size="sm">
-                Réessayer
+              <Button
+                onClick={() => refetch()}
+                variant="outline"
+                size="sm"
+                disabled={isRefetching}
+              >
+                {isRefetching ? (
+                  <>
+                    <Loader2 className="size-4 mr-2 animate-spin" />
+                    Chargement...
+                  </>
+                ) : (
+                  "Réessayer"
+                )}
               </Button>
             </div>
           </Card>
         )}
 
-        {funFact && !loading && (
+        {funFact && !isLoading && (
           <Card className="p-8 border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-950/20">
             <div className="flex items-start gap-4 mb-6">
               <div className="shrink-0">
@@ -104,12 +110,12 @@ export default function FunFactPage() {
 
             <div className="mt-6 pt-6 border-t">
               <Button
-                onClick={fetchFunFact}
+                onClick={() => refetch()}
                 variant="outline"
                 className="w-full sm:w-auto"
-                disabled={loading}
+                disabled={isRefetching}
               >
-                {loading ? (
+                {isRefetching ? (
                   <>
                     <Loader2 className="size-4 mr-2 animate-spin" />
                     Génération...
@@ -129,14 +135,16 @@ export default function FunFactPage() {
         <Card className="p-6 bg-muted/50 border-dashed">
           <p className="text-sm text-muted-foreground">
             <strong className="text-foreground">💡 Note :</strong> Cette page
-            utilise le <strong>CSR (Client-Side Rendering)</strong>. Les
-            données sont chargées côté client avec <code className="bg-muted px-1 rounded text-xs">useEffect</code> et{" "}
-            <code className="bg-muted px-1 rounded text-xs">fetch()</code>. Le
-            contenu est généré dynamiquement après le chargement de la page.
+            utilise le <strong>CSR (Client-Side Rendering)</strong>. Les données
+            sont chargées côté client avec{" "}
+            <code className="bg-muted px-1 rounded text-xs">
+              TanStack Query
+            </code>{" "}
+            (useQuery). Le contenu est généré dynamiquement après le chargement
+            de la page.
           </p>
         </Card>
       </div>
     </PageContainer>
   );
 }
-

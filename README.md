@@ -4,8 +4,8 @@ Projet Next.js démontrant l'intégration de l'IA avec le **AI SDK** de Vercel e
 
 ## 🎯 Objectifs
 
-- **CSR (Client-Side Rendering)** : Chat interactif en temps réel avec streaming IA
-- **SSR (Server-Side Rendering)** : Génération de contenu IA côté serveur
+- **CSR (Client-Side Rendering) + Streaming** : Chat interactif en temps réel avec streaming IA
+- **SSR (Server-Side Rendering)** : Génération de contenu IA côté serveur à chaque requête
 - **SSG (Static Site Generation)** : Page statique (À propos)
 
 ## ✨ Fonctionnalités
@@ -127,9 +127,10 @@ app/
 - Cards avec animations et gradients
 - Dark mode toggle
 
-### 2. 💬 Chat Interactif (CSR) - `/chat`
+### 2. 💬 Chat Interactif (CSR + Streaming) - `/chat`
 
 - **Utilise l'IA** : Streaming en temps réel avec `useChat` de `@ai-sdk/react`
+- **Pattern** : Client Component (`"use client"`) + API Route + streaming
 - Filtrage automatique du raisonnement de l'IA (`<think>`)
 - Rendu Markdown des réponses
 - Auto-scroll et state management local
@@ -137,15 +138,39 @@ app/
 ### 3. 💡 Générateur d'Idées (SSR) - `/prompts`
 
 - **Utilise l'IA** : Génération côté serveur avec `generateText`
-- Rendu à chaque requête (Server-Side Rendering)
+- **Pattern** : Server Component + `await getPrompts()` + `router.refresh()`
+- **Rendu à chaque requête** : Données toujours fraîches, pas de cache
 - Affichage du raisonnement et du contenu dans des accordéons
-- Bouton pour régénérer de nouvelles idées
+- Bouton pour régénérer de nouvelles idées (Client Component avec `router.refresh()`)
 
 ### 4. ℹ️ À Propos (SSG) - `/about`
 
+- **Pattern** : Server Component (par défaut)
 - Page statique (Static Site Generation)
 - **N'utilise pas l'IA** : Contenu fixe généré au build
 - Informations sur le projet
+
+---
+
+## 🎓 Modes de Rendu Expliqués
+
+### CSR (Client-Side Rendering) + Streaming - Chat
+- **Directive** : `"use client"` en haut du fichier
+- **Quand** : Besoin d'interactivité en temps réel (chat, streaming)
+- **Comment** : `useChat()` + `streamText()` dans API Route
+- **Avantage** : Streaming des réponses token par token
+
+### SSR (Server-Side Rendering) - Prompts
+- **Directive** : Aucune (Server Component par défaut) + `export const dynamic = "force-dynamic"`
+- **Quand** : Besoin de données fraîches à chaque requête, SEO important
+- **Comment** : `await getPrompts()` directement dans le composant
+- **Avantage** : Données toujours à jour, SEO optimal, pas de JS client pour les données
+
+### SSG (Static Site Generation) - About
+- **Directive** : Aucune (Server Component par défaut)
+- **Quand** : Contenu statique qui ne change pas
+- **Comment** : Server Component sans fetch
+- **Avantage** : Ultra rapide, généré au build
 
 ## 🧪 Commandes
 
@@ -196,9 +221,10 @@ npm run lint
 
 ### ✅ State Management
 
-- `useState` pour l'état local (formulaire)
+- **Server Components** : Pas de state (données fetchées côté serveur)
+- **Client Components** : `useState` pour l'état local (formulaire)
 - `useChat` pour le chat streaming (AI SDK)
-- Pas de state management global (inutile pour ce projet)
+- `useTransition` pour les transitions (bouton refresh)
 
 ### ✅ Conventions de nommage
 
@@ -239,9 +265,9 @@ npm run lint
 
 ### ✅ AI SDK - Bonnes pratiques
 
-- Utilise `useChat` pour le streaming client
-- Utilise `streamText` pour l'API route
-- Utilise `generateText` pour SSR
+- **CSR Streaming** : `useChat()` (client) + `streamText()` (API route)
+- **SSR** : `generateText()` dans Server Component
+- **API Route** : Utilise `convertToModelMessages()` pour compatibilité
 - Structure `message.parts` (nouvelle API)
 
 ## 🔗 Ressources

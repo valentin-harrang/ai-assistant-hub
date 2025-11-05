@@ -18,10 +18,12 @@ function getGroqClient() {
 
 export async function POST(req: NextRequest) {
   try {
+    // 🎓 Étape 1: Initialiser le client IA (Groq avec Mixtral)
     const groq = getGroqClient();
     const body = await req.json();
 
-    // DefaultChatTransport envoie { chatId, messages }
+    // 🎓 Étape 2: Extraire les messages envoyés par useChat()
+    // Le format attendu est { messages: UIMessage[] }
     const { messages } = body;
 
     if (!messages || !Array.isArray(messages)) {
@@ -32,16 +34,19 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Convertir UIMessage[] en ModelMessage[]
+    // 🎓 Étape 3: Convertir les messages UI en format attendu par l'IA
+    // UIMessage { role, content } → ModelMessage compatible avec le modèle
     const modelMessages = convertToModelMessages(messages);
 
-    // Stream le texte avec l'AI SDK
+    // 🎓 Étape 4: Générer la réponse en streaming
+    // streamText() retourne un stream de tokens en temps réel
     const result = streamText({
       model: groq(AI_MODEL),
       messages: modelMessages,
     });
 
-    // Retourner le stream (compatible avec TextStreamChatTransport)
+    // 🎓 Étape 5: Retourner le stream au client
+    // toTextStreamResponse() crée une Response compatible avec useChat()
     return result.toTextStreamResponse();
   } catch (error) {
     console.error("Chat API error:", error);

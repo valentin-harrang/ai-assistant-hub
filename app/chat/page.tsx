@@ -12,13 +12,19 @@ import { GoHome } from "@/app/components/shared/go-home";
 import { Card } from "@/app/components/ui/card";
 
 export default function ChatPage() {
+  // 🎓 Étape 1: Créer un transport pour communiquer avec l'API
+  // TextStreamChatTransport gère le streaming des réponses
+  // useMemo() évite de recréer le transport à chaque render
   const transport = useMemo(
     () => new TextStreamChatTransport({ api: "/api/chat" }),
     []
   );
 
+  // 🎓 Étape 2: Utiliser useChat() du Vercel AI SDK
+  // Gère automatiquement: messages, loading, streaming, erreurs
   const chat = useChat({ transport });
 
+  // 🎓 Étape 3: Fonction pour envoyer un message
   const handleSendMessage = async (text: string) => {
     await chat.sendMessage({ text });
   };

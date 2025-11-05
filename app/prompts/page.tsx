@@ -1,36 +1,31 @@
-"use client";
+// 🎓 SSR - Server Component (pas de "use client")
+// Cette page est rendue côté serveur à chaque requête
+// Avantages: SEO optimal, données toujours fraîches, pas de JS client nécessaire
 
 import { PageHeader } from "@/app/components/shared/page-header";
 import { MarkdownContent } from "@/app/components/shared/markdown-content";
-import { Card } from "@/app/components/ui/card";
-import { Button } from "@/app/components/ui/button";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/app/components/ui/accordion";
-import { useQuery } from "@tanstack/react-query";
-import { Loader2, Lightbulb, Brain } from "lucide-react";
-import { fetchPrompts } from "@/app/lib/fetch-prompts";
-import Link from "next/link";
+import { Lightbulb, Brain } from "lucide-react";
+import { getPrompts } from "@/app/lib/get-prompts";
 import { GoHome } from "../components/shared/go-home";
+import { RefreshButton } from "./refresh-button";
 
-export default function PromptsPage() {
-  const {
-    data,
-    isLoading,
-    error: queryError,
-    refetch,
-    isFetching,
-  } = useQuery({
-    queryKey: ["prompts"],
-    queryFn: fetchPrompts,
-  });
+// 🎓 Force le rendu dynamique (SSR) à chaque requête
+// Sans cette ligne, Next.js pourrait mettre en cache la page
+export const dynamic = "force-dynamic";
 
-  const handleRefetch = async () => {
-    await refetch();
-  };
+// 🎓 Fonction Server Component asynchrone
+// Peut appeler directement les fonctions serveur (getPrompts)
+export default async function PromptsPage() {
+  // 🎓 Fetch des données côté serveur avec await
+  // Pas besoin de useState, useEffect, loading states
+  // Next.js gère automatiquement le streaming et le suspense
+  const data = await getPrompts();
 
   return (
     <main className="min-h-screen bg-linear-to-b from-background via-background to-background/50">
@@ -38,115 +33,71 @@ export default function PromptsPage() {
         <GoHome />
 
         <PageHeader
-          title="Générateur d'idées IA"
+          title="Générateur d'idées IA (SSR)"
           emoji="💡"
-          description="Découvrez des idées de projets web innovants adaptées aux développeurs React et Next.js"
+          description="Découvrez des idées de projets web innovants. Cette page est rendue côté serveur (SSR) à chaque requête pour des données toujours fraîches."
           className="my-12"
         />
 
-        {/* Loading State */}
-        {isLoading && (
-          <div className="flex flex-col items-center justify-center py-16 gap-4">
-            <Loader2 className="size-8 animate-spin text-blue-500" />
-            <p className="text-muted-foreground">
-              Génération d&apos;idées en cours...
-            </p>
-          </div>
-        )}
-
-        {/* Error State */}
-        {queryError && (
-          <Card className="border-destructive bg-destructive/10 p-6">
-            <p className="text-destructive font-semibold">
-              Erreur:{" "}
-              {queryError instanceof Error
-                ? queryError.message
-                : "Une erreur est survenue"}
-            </p>
-          </Card>
-        )}
-
-        {/* Content */}
-        {data && !isLoading && (
-          <div className="space-y-6">
-            {/* Accordions pour raisonnement et contenu */}
-            <Accordion type="multiple" className="w-full space-y-4">
-              {/* Accordion pour le raisonnement */}
-              {data.reasoning && (
-                <AccordionItem
-                  value="reasoning"
-                  className="border rounded-lg overflow-hidden bg-card shadow-sm"
-                >
-                  <AccordionTrigger className="hover:no-underline px-4 py-4 bg-linear-to-r from-blue-500/10 to-purple-500/10 hover:bg-blue-500/20 transition-colors">
-                    <div className="flex items-center gap-3">
-                      <Brain className="size-5 text-blue-500 shrink-0" />
-                      <span className="font-semibold text-foreground text-base">
-                        Raisonnement de l&apos;IA
-                      </span>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="p-0">
-                    <div className="bg-muted/30 border-t p-6">
-                      <MarkdownContent
-                        content={data.reasoning}
-                        className="text-sm prose-sm max-w-none dark:prose-invert"
-                      />
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              )}
-
-              {/* Accordion pour les idées générées */}
+        {/* Content - Toujours disponible (pas de loading state) */}
+        <div className="space-y-6">
+          {/* Accordions pour raisonnement et contenu */}
+          <Accordion type="multiple" className="w-full space-y-4">
+            {/* Accordion pour le raisonnement */}
+            {data.reasoning && (
               <AccordionItem
-                value="ideas"
+                value="reasoning"
                 className="border rounded-lg overflow-hidden bg-card shadow-sm"
               >
-                <AccordionTrigger className="hover:no-underline px-4 py-4 bg-linear-to-r from-yellow-500/10 to-orange-500/10 hover:bg-yellow-500/20 transition-colors">
+                <AccordionTrigger className="hover:no-underline px-4 py-4 bg-linear-to-r from-blue-500/10 to-purple-500/10 hover:bg-blue-500/20 transition-colors">
                   <div className="flex items-center gap-3">
-                    <Lightbulb className="size-5 text-yellow-500 shrink-0" />
+                    <Brain className="size-5 text-blue-500 shrink-0" />
                     <span className="font-semibold text-foreground text-base">
-                      Idées générées
+                      Raisonnement de l&apos;IA
                     </span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="p-0">
-                  <div className="bg-muted/30 border-t p-6 sm:p-8">
+                  <div className="bg-muted/30 border-t p-6">
                     <MarkdownContent
-                      content={data.content}
-                      className="prose max-w-none dark:prose-invert"
+                      content={data.reasoning}
+                      className="text-sm prose-sm max-w-none dark:prose-invert"
                     />
                   </div>
                 </AccordionContent>
               </AccordionItem>
-            </Accordion>
+            )}
 
-            <div className="flex gap-3 justify-center pt-4">
-              <Button
-                variant="outline"
-                onClick={handleRefetch}
-                disabled={isLoading || isFetching}
-              >
-                {isFetching ? (
-                  <>
-                    <Loader2 className="size-4 mr-2 animate-spin" />
-                    Génération...
-                  </>
-                ) : (
-                  "Générer d'autres idées"
-                )}
-              </Button>
-              <Button
-                variant="default"
-                onClick={() => {
-                  // Scroll vers le haut pour voir les nouvelles idées
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                }}
-              >
-                Retour en haut
-              </Button>
-            </div>
+            {/* Accordion pour les idées générées */}
+            <AccordionItem
+              value="ideas"
+              className="border rounded-lg overflow-hidden bg-card shadow-sm"
+            >
+              <AccordionTrigger className="hover:no-underline px-4 py-4 bg-linear-to-r from-yellow-500/10 to-orange-500/10 hover:bg-yellow-500/20 transition-colors">
+                <div className="flex items-center gap-3">
+                  <Lightbulb className="size-5 text-yellow-500 shrink-0" />
+                  <span className="font-semibold text-foreground text-base">
+                    Idées générées
+                  </span>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="p-0">
+                <div className="bg-muted/30 border-t p-6 sm:p-8">
+                  <MarkdownContent
+                    content={data.content}
+                    className="prose max-w-none dark:prose-invert"
+                  />
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+
+          {/* 🎓 Bouton de rafraîchissement (Client Component)
+              Utilise router.refresh() pour recharger les données serveur */}
+          <div className="flex gap-3 justify-center pt-4">
+            <RefreshButton />
           </div>
-        )}
+        </div>
       </div>
     </main>
   );

@@ -7,6 +7,7 @@ Projet Next.js démontrant l'intégration de l'IA avec le **AI SDK** de Vercel e
 - **CSR (Client-Side Rendering) + Streaming** : Chat interactif en temps réel avec streaming IA
 - **SSR (Server-Side Rendering)** : Génération de contenu IA côté serveur à chaque requête
 - **SSG (Static Site Generation)** : Page statique (À propos)
+- **ISR (Incremental Static Regeneration)** : Régénération automatique avec cache (concept expliqué)
 
 ## ✨ Fonctionnalités
 
@@ -171,6 +172,12 @@ app/
 - **Quand** : Contenu statique qui ne change pas
 - **Comment** : Server Component sans fetch
 - **Avantage** : Ultra rapide, généré au build
+
+### ISR (Incremental Static Regeneration) - Concept expliqué
+- **Directive** : `export const revalidate = 60` (en secondes)
+- **Quand** : Contenu qui change régulièrement mais pas en temps réel
+- **Comment** : Server Component avec `revalidate` dans les métadonnées
+- **Avantage** : Performance du SSG + fraîcheur automatique (régénération en arrière-plan)
 
 ## 🧪 Commandes
 

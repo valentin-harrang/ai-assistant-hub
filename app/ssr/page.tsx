@@ -23,17 +23,26 @@ export default function SSRPage() {
           <div className="flex items-start gap-4">
             <Server className="size-8 text-amber-600 dark:text-amber-400 shrink-0 mt-1" />
             <div>
-              <h2 className="text-2xl font-bold mb-2">🍕 Analogie : La Pizza Livrée</h2>
+              <h2 className="text-2xl font-bold mb-2">
+                🍕 Analogie : La Pizza Livrée
+              </h2>
               <p className="text-muted-foreground leading-relaxed">
-                Avec le <strong>SSR</strong>, c&apos;est comme commander une pizza :
+                Avec le <strong>SSR</strong>, c&apos;est comme commander une
+                pizza :
               </p>
               <ul className="mt-3 space-y-2 text-muted-foreground">
                 <li>• 🍕 Tu commandes (requête au serveur)</li>
-                <li>• 🏪 Le restaurant prépare la pizza (serveur génère le HTML)</li>
-                <li>• 🚗 Le livreur arrive avec une pizza <strong>prête à manger</strong> (HTML complet)</li>
+                <li>
+                  • 🏪 Le restaurant prépare la pizza (serveur génère le HTML)
+                </li>
+                <li>
+                  • 🚗 Le livreur arrive avec une pizza{" "}
+                  <strong>prête à manger</strong> (HTML complet)
+                </li>
               </ul>
               <p className="mt-3 text-muted-foreground">
-                Le serveur fait tout le travail, tu reçois juste le résultat final !
+                Le serveur fait tout le travail, tu reçois juste le résultat
+                final !
               </p>
             </div>
           </div>
@@ -41,50 +50,59 @@ export default function SSRPage() {
 
         {/* Comment ça marche - Version simple */}
         <Card className="p-6">
-          <h2 className="text-2xl font-bold mb-4">⚙️ Comment ça marche ? (Version simple)</h2>
+          <h2 className="text-2xl font-bold mb-4">
+            ⚙️ Comment ça marche ? (Version simple)
+          </h2>
           <div className="space-y-4">
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold">
+              <div className="shrink-0 w-8 h-8 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold">
                 1
               </div>
               <div>
                 <h3 className="font-semibold mb-1">Tu cliques sur un lien</h3>
                 <p className="text-sm text-muted-foreground">
-                  Ton navigateur demande la page au serveur : &quot;Hey, donne-moi /prompts&quot;
+                  Ton navigateur demande la page au serveur : &quot;Hey,
+                  donne-moi /prompts&quot;
                 </p>
               </div>
             </div>
 
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold">
+              <div className="shrink-0 w-8 h-8 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold">
                 2
               </div>
               <div>
-                <h3 className="font-semibold mb-1">Le serveur se met au travail</h3>
+                <h3 className="font-semibold mb-1">
+                  Le serveur se met au travail
+                </h3>
                 <p className="text-sm text-muted-foreground">
-                  Le serveur exécute le code React, récupère les données (API, base de données), et génère tout le HTML
+                  Le serveur exécute le code React, récupère les données (API,
+                  base de données), et génère tout le HTML
                 </p>
               </div>
             </div>
 
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold">
+              <div className="shrink-0 w-8 h-8 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold">
                 3
               </div>
               <div>
                 <h3 className="font-semibold mb-1">Le HTML complet est prêt</h3>
                 <p className="text-sm text-muted-foreground">
-                  Tous les textes, images, contenu sont déjà dans le HTML. Rien n&apos;est vide !
+                  Tous les textes, images, contenu sont déjà dans le HTML. Rien
+                  n&apos;est vide !
                 </p>
               </div>
             </div>
 
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold">
+              <div className="shrink-0 w-8 h-8 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold">
                 4
               </div>
               <div>
-                <h3 className="font-semibold mb-1">Le serveur t&apos;envoie tout</h3>
+                <h3 className="font-semibold mb-1">
+                  Le serveur t&apos;envoie tout
+                </h3>
                 <p className="text-sm text-muted-foreground">
                   Tu reçois un HTML complet avec tout le contenu déjà dedans
                 </p>
@@ -92,13 +110,16 @@ export default function SSRPage() {
             </div>
 
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold">
+              <div className="shrink-0 w-8 h-8 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold">
                 5
               </div>
               <div>
-                <h3 className="font-semibold mb-1">Tu vois la page immédiatement</h3>
+                <h3 className="font-semibold mb-1">
+                  Tu vois la page immédiatement
+                </h3>
                 <p className="text-sm text-muted-foreground">
-                  Le contenu s&apos;affiche tout de suite, même si JavaScript n&apos;est pas encore chargé !
+                  Le contenu s&apos;affiche tout de suite, même si JavaScript
+                  n&apos;est pas encore chargé !
                 </p>
               </div>
             </div>
@@ -117,7 +138,9 @@ export default function SSRPage() {
               <div>
                 <h3 className="font-semibold">SEO Parfait</h3>
                 <p className="text-sm text-muted-foreground">
-                  Google voit le contenu complet dès le premier chargement. C&apos;est idéal pour être trouvé sur les moteurs de recherche !
+                  Google voit le contenu complet dès le premier chargement.
+                  C&apos;est idéal pour être trouvé sur les moteurs de recherche
+                  !
                 </p>
               </div>
             </div>
@@ -126,7 +149,8 @@ export default function SSRPage() {
               <div>
                 <h3 className="font-semibold">Contenu Visible Tout de Suite</h3>
                 <p className="text-sm text-muted-foreground">
-                  Pas besoin d&apos;attendre JavaScript. Le texte s&apos;affiche immédiatement, même sur un vieux téléphone !
+                  Pas besoin d&apos;attendre JavaScript. Le texte s&apos;affiche
+                  immédiatement, même sur un vieux téléphone !
                 </p>
               </div>
             </div>
@@ -135,7 +159,8 @@ export default function SSRPage() {
               <div>
                 <h3 className="font-semibold">Données Toujours Fraîches</h3>
                 <p className="text-sm text-muted-foreground">
-                  À chaque visite, le serveur génère une nouvelle page. Toujours à jour, jamais de cache vieux !
+                  À chaque visite, le serveur génère une nouvelle page. Toujours
+                  à jour, jamais de cache vieux !
                 </p>
               </div>
             </div>
@@ -144,7 +169,8 @@ export default function SSRPage() {
               <div>
                 <h3 className="font-semibold">Sécurité</h3>
                 <p className="text-sm text-muted-foreground">
-                  Les clés API restent sur le serveur, jamais exposées dans le navigateur. Super sécurisé !
+                  Les clés API restent sur le serveur, jamais exposées dans le
+                  navigateur. Super sécurisé !
                 </p>
               </div>
             </div>
@@ -165,7 +191,8 @@ export default function SSRPage() {
               <div>
                 <h3 className="font-semibold">Le Serveur Travaille Beaucoup</h3>
                 <p className="text-sm text-muted-foreground">
-                  À chaque visite, le serveur doit générer la page. Si tu as beaucoup de visiteurs, ça peut devenir lent ou cher.
+                  À chaque visite, le serveur doit générer la page. Si tu as
+                  beaucoup de visiteurs, ça peut devenir lent ou cher.
                 </p>
               </div>
             </div>
@@ -176,7 +203,8 @@ export default function SSRPage() {
               <div>
                 <h3 className="font-semibold">Premier Affichage Plus Long</h3>
                 <p className="text-sm text-muted-foreground">
-                  Le serveur doit attendre les données avant de générer le HTML. Ça peut prendre 1-2 secondes.
+                  Le serveur doit attendre les données avant de générer le HTML.
+                  Ça peut prendre 1-2 secondes.
                 </p>
               </div>
             </div>
@@ -185,9 +213,12 @@ export default function SSRPage() {
                 ⚠️
               </div>
               <div>
-                <h3 className="font-semibold">Pas d&apos;Interactivité Sans JavaScript</h3>
+                <h3 className="font-semibold">
+                  Pas d&apos;Interactivité Sans JavaScript
+                </h3>
                 <p className="text-sm text-muted-foreground">
-                  Pour les boutons, animations, etc., il faut quand même charger JavaScript. Le HTML seul ne suffit pas.
+                  Pour les boutons, animations, etc., il faut quand même charger
+                  JavaScript. Le HTML seul ne suffit pas.
                 </p>
               </div>
             </div>
@@ -196,7 +227,9 @@ export default function SSRPage() {
 
         {/* Quand l'utiliser - Version simple */}
         <Card className="p-6">
-          <h2 className="text-2xl font-bold mb-4">🎯 Quand utiliser le SSR ?</h2>
+          <h2 className="text-2xl font-bold mb-4">
+            🎯 Quand utiliser le SSR ?
+          </h2>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="p-4 bg-muted rounded-lg">
               <h3 className="font-semibold mb-2">✅ Utilise SSR pour :</h3>
@@ -224,26 +257,41 @@ export default function SSRPage() {
 
         {/* Exemple concret dans le projet */}
         <Card className="p-6 bg-amber-50 dark:bg-amber-950/20 border-amber-200 dark:border-amber-800">
-          <h2 className="text-2xl font-bold mb-4">💡 Exemple dans notre projet</h2>
+          <h2 className="text-2xl font-bold mb-4">
+            💡 Exemple dans notre projet
+          </h2>
           <p className="text-muted-foreground mb-4">
-            La page <strong>/prompts</strong> utilise le SSR. Voici pourquoi c&apos;est parfait :
+            La page <strong>/prompts</strong> utilise le SSR. Voici pourquoi
+            c&apos;est parfait :
           </p>
           <div className="space-y-2 text-sm">
             <div className="flex items-start gap-2">
               <span className="text-amber-600 dark:text-amber-400">→</span>
-              <span>Les idées IA sont <strong>générées à chaque visite</strong> (toujours fraîches)</span>
+              <span>
+                Les idées IA sont <strong>générées à chaque visite</strong>{" "}
+                (toujours fraîches)
+              </span>
             </div>
             <div className="flex items-start gap-2">
               <span className="text-amber-600 dark:text-amber-400">→</span>
-              <span>La clé API Groq reste <strong>sécurisée côté serveur</strong> (jamais exposée)</span>
+              <span>
+                La clé API Groq reste <strong>sécurisée côté serveur</strong>{" "}
+                (jamais exposée)
+              </span>
             </div>
             <div className="flex items-start gap-2">
               <span className="text-amber-600 dark:text-amber-400">→</span>
-              <span>Le contenu est <strong>visible immédiatement</strong> (pas de loading spinner)</span>
+              <span>
+                Le contenu est <strong>visible immédiatement</strong> (pas de
+                loading spinner)
+              </span>
             </div>
             <div className="flex items-start gap-2">
               <span className="text-amber-600 dark:text-amber-400">→</span>
-              <span>Potentiel SEO (même si limité ici, on pourrait partager des idées)</span>
+              <span>
+                Potentiel SEO (même si limité ici, on pourrait partager des
+                idées)
+              </span>
             </div>
           </div>
         </Card>
@@ -253,7 +301,9 @@ export default function SSRPage() {
           <div className="text-center">
             <h2 className="text-xl font-bold mb-2">📝 Résumé en une phrase</h2>
             <p className="text-lg text-muted-foreground">
-              <strong>SSR</strong> = Le serveur prépare tout le HTML avec le contenu, <strong>tu reçois une page complète</strong> prête à afficher.
+              <strong>SSR</strong> = Le serveur prépare tout le HTML avec le
+              contenu, <strong>tu reçois une page complète</strong> prête à
+              afficher.
             </p>
           </div>
         </Card>
@@ -261,4 +311,3 @@ export default function SSRPage() {
     </PageContainer>
   );
 }
-

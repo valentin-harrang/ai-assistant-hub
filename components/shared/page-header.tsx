@@ -37,7 +37,7 @@ export function PageHeader({
           </h1>
         </div>
         {description && (
-          <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+          <p className="text-lg max-w-2xl leading-relaxed">
             {description}
           </p>
         )}

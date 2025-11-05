@@ -2,7 +2,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { useChat } from "@ai-sdk/react";
+import { useChat, type UIMessage } from "@ai-sdk/react";
 import { TextStreamChatTransport } from "ai";
 import { PageContainer } from "@/components/shared/page-container";
 import { PageHeader } from "@/components/shared/page-header";
@@ -17,6 +17,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { CheckCircle2, XCircle, Info } from "lucide-react";
+import { useChatStorage } from "@/lib/use-chat-storage";
 
 export default function ChatPage() {
   // 🎓 Étape 1: Créer un transport pour communiquer avec l'API
@@ -30,6 +31,13 @@ export default function ChatPage() {
   // 🎓 Étape 2: Utiliser useChat() du Vercel AI SDK
   // Gère automatiquement: messages, loading, streaming, erreurs
   const chat = useChat({ transport });
+
+  // Synchroniser les messages avec localStorage
+  // Le hook gère automatiquement le chargement et la sauvegarde
+  const chatHelpers = chat as typeof chat & {
+    setMessages?: (messages: UIMessage[]) => void;
+  };
+  useChatStorage(chat.messages, chatHelpers.setMessages);
 
   // 🎓 Étape 3: Fonction pour envoyer un message
   const handleSendMessage = async (text: string) => {

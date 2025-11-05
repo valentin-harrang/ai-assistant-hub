@@ -32,13 +32,12 @@ Requirements:
 - Développe le fun fact avec plusieurs détails intéressants (2-3 phrases)
 - Ajoute une conclusion marrante ou surprenante
 - Sois créatif et amusant
-- Le sujet peut être varié : science, histoire, animaux, technologie, etc.`;
+- Le sujet peut être varié : science, histoire, animaux, technologie, sport, culture, etc.`;
 
     // 🎓 Générer le texte avec l'IA
     const result = await generateText({
       model: groq(AI_MODEL),
       prompt,
-      maxTokens: 300,
     });
 
     // 🎓 Filtrer le raisonnement (ne pas l'afficher)
@@ -55,11 +54,9 @@ Requirements:
 
     return NextResponse.json(
       {
-        error:
-          error instanceof Error ? error.message : "Internal server error",
+        error: error instanceof Error ? error.message : "Internal server error",
       },
       { status: 500 }
     );
   }
 }
-

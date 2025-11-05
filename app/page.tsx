@@ -86,7 +86,7 @@ export default function Home() {
 
       {/* Section Exercices */}
       <Card className="mt-12 p-8 bg-linear-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/20 dark:to-teal-950/20 border-emerald-200 dark:border-emerald-800">
-        <div className="text-center mb-6">
+        <div className="text-center">
           <div className="flex items-center justify-center gap-2 mb-2">
             <GraduationCap className="size-6 text-emerald-700 dark:text-emerald-300" />
             <h2 className="text-2xl font-bold text-emerald-900 dark:text-emerald-100">

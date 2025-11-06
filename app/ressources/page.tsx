@@ -6,22 +6,25 @@ import { RessourcesTabs } from "@/components/domain/ressources/ressources-tabs";
 
 export const metadata = {
   title: "Ressources",
-  description: "Bibliothèques et outils recommandés pour Next.js et React",
+  description:
+    "Bibliothèques, outils et plateformes recommandés pour le développement web et l'intégration IA",
 };
 
 export default function RessourcesPage() {
-  const ressourcesByCategory = categories.map((category) => ({
-    category,
-    ressources: ressources
-      .filter((r) => r.category === category)
-      .map((r) => ({
-        slug: r.slug,
-        name: r.name,
-        category: r.category,
-        description: r.description,
-        color: r.color,
-      })),
-  })).filter((group) => group.ressources.length > 0);
+  const ressourcesByCategory = categories
+    .map((category) => ({
+      category,
+      ressources: ressources
+        .filter((r) => r.category === category)
+        .map((r) => ({
+          slug: r.slug,
+          name: r.name,
+          category: r.category,
+          description: r.description,
+          color: r.color,
+        })),
+    }))
+    .filter((group) => group.ressources.length > 0);
 
   return (
     <PageContainer>
@@ -30,7 +33,7 @@ export default function RessourcesPage() {
       <PageHeader
         title="Ressources"
         emoji="📚"
-        description="Bibliothèques et outils recommandés pour développer avec Next.js et React"
+        description="Bibliothèques, outils et plateformes recommandés pour développer avec Next.js / React et intégrer l'IA dans vos applications"
         className="my-12"
       />
 
@@ -38,4 +41,3 @@ export default function RessourcesPage() {
     </PageContainer>
   );
 }
-

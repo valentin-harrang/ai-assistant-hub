@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { PageContainer } from "@/components/shared/page-container";
-import { GoHome } from "@/components/shared/go-home";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";

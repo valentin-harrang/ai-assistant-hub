@@ -16,6 +16,8 @@ import {
   Moon,
   Shield,
   Settings,
+  Move,
+  Calendar,
 } from "lucide-react";
 
 export interface Ressource {
@@ -625,6 +627,73 @@ export const ressources: Ressource[] = [
       textDark: "dark:text-blue-400",
     },
   },
+  {
+    slug: "dnd-kit",
+    name: "dnd kit",
+    category: "UI Components",
+    icon: Move,
+    description: "Bibliothèque de drag and drop accessible pour React",
+    longDescription:
+      "dnd kit est une bibliothèque moderne et accessible pour implémenter le drag and drop dans React. Elle offre une API simple, une excellente accessibilité (ARIA) et une performance optimale.",
+    website: "https://dndkit.com",
+    npmPackage: "@dnd-kit/core",
+    useCases: [
+      "Listes réorganisables",
+      "Kanban boards",
+      "Tableaux avec colonnes déplaçables",
+      "Formulaires avec champs réorganisables",
+      "Galleries d'images réorganisables",
+    ],
+    features: [
+      "Accessible (ARIA compliant)",
+      "TypeScript",
+      "Performance optimale",
+      "API simple et intuitive",
+      "Support tactile",
+      "Personnalisable",
+      "Sensors multiples",
+    ],
+    color: {
+      bg: "bg-violet-100",
+      bgDark: "dark:bg-violet-900/30",
+      text: "text-violet-600",
+      textDark: "dark:text-violet-400",
+    },
+  },
+  {
+    slug: "dayjs",
+    name: "Day.js",
+    category: "Utilities",
+    icon: Calendar,
+    description: "Bibliothèque de manipulation de dates légère et moderne",
+    longDescription:
+      "Day.js est une bibliothèque JavaScript moderne et légère pour manipuler les dates. Alternative légère à Moment.js, elle offre une API similaire avec un bundle beaucoup plus petit (2KB vs 67KB).",
+    website: "https://day.js.org",
+    npmPackage: "dayjs",
+    useCases: [
+      "Formatage de dates",
+      "Calculs de dates (ajout, soustraction)",
+      "Parsing de dates",
+      "Comparaison de dates",
+      "Manipulation de timezones",
+      "Localisation",
+    ],
+    features: [
+      "Léger (2KB)",
+      "API similaire à Moment.js",
+      "Immutable",
+      "Chainable",
+      "Plugins extensibles",
+      "TypeScript",
+      "i18n support",
+    ],
+    color: {
+      bg: "bg-indigo-100",
+      bgDark: "dark:bg-indigo-900/30",
+      text: "text-indigo-600",
+      textDark: "dark:text-indigo-400",
+    },
+  },
 ];
 
 export const categories = [
@@ -642,6 +711,7 @@ export const categories = [
   "Development",
   "Tables",
   "Authentication",
+  "Utilities",
 ] as const;
 
 export function getRessourceBySlug(slug: string): Ressource | undefined {

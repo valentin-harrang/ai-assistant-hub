@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function Footer() {
   return (
     <footer className="border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -5,23 +7,23 @@ export function Footer() {
         <div className="py-6 text-center text-sm text-muted-foreground">
           <p>
             Créé avec <span className="text-red-500">❤️</span> par{" "}
-            <a
+            <Link
               href="https://www.linkedin.com/in/valentin-harrang/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-foreground hover:text-blue-600"
             >
               Valentin Harrang
-            </a>{" "}
+            </Link>{" "}
             à des fins de formation pour la{" "}
-            <a
+            <Link
               href="https://www.linkedin.com/school/normandiewebschool/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-foreground hover:text-blue-600"
             >
               Normandie Web School
-            </a>
+            </Link>
           </p>
         </div>
       </div>

@@ -2,11 +2,11 @@
 import {
   MessageSquare,
   Lightbulb,
-  Info,
   Sparkles,
   BookOpen,
   GraduationCap,
   Target,
+  Atom,
 } from "lucide-react";
 import { PageContainer } from "@/components/shared/page-container";
 import { FeatureCard } from "@/components/shared/feature-card";
@@ -42,24 +42,6 @@ const features = [
     gradient: "from-green-500 to-emerald-500",
   },
   {
-    title: "Exercices Pratiques",
-    description: "Maîtrisez Next.js et l'IA avec des exercices pratiques",
-    href: "/exercices",
-    icon: GraduationCap,
-    badge: "SSG",
-    badgeVariant: "outline" as const,
-    gradient: "from-emerald-500 to-teal-500",
-  },
-  {
-    title: "À Propos",
-    description: "Page statique avec informations sur le projet",
-    href: "/about",
-    icon: Info,
-    badge: "SSG",
-    badgeVariant: "outline" as const,
-    gradient: "from-purple-500 to-pink-500",
-  },
-  {
     title: "Ressources",
     description: "Bibliothèques et outils recommandés",
     href: "/ressources",
@@ -67,6 +49,24 @@ const features = [
     badge: "SSG",
     badgeVariant: "outline" as const,
     gradient: "from-indigo-500 to-purple-500",
+  },
+  {
+    title: "Pourquoi React ?",
+    description: "Découvrez l'histoire et les innovations de React",
+    href: "/react",
+    icon: Atom,
+    badge: "SSG",
+    badgeVariant: "outline" as const,
+    gradient: "from-emerald-500 to-teal-500",
+  },
+  {
+    title: "Exercices Pratiques",
+    description: "Maîtrisez Next.js et l'IA avec des exercices pratiques",
+    href: "/exercices",
+    icon: GraduationCap,
+    badge: "SSG",
+    badgeVariant: "outline" as const,
+    gradient: "from-cyan-500 to-blue-500",
   },
 ];
 

@@ -109,7 +109,7 @@ export default async function RessourcePage({ params }: RessourcePageProps) {
         <div className="space-y-4">
           <Card className="p-6">
             <h3 className="font-semibold mb-4 text-foreground">Liens</h3>
-            <div className="space-y-3">
+            <div className="flex flex-col gap-3">
               <Link
                 href={ressource.website}
                 target="_blank"

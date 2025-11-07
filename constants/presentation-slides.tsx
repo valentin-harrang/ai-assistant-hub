@@ -657,7 +657,7 @@ const element = <h1>Bonjour {name} !</h1>;`}</code>
                       💡 Version actuelle :
                     </p>
                     <p className="text-sm">
-                      Next.js <strong>15</strong> (novembre 2024) avec React 19
+                      Next.js <strong>16</strong> (octobre 2025) avec React 19
                     </p>
                   </div>
                 </div>

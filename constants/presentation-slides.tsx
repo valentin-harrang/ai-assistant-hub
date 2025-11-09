@@ -30,14 +30,6 @@ export const presentationSlides: Slide[] = [
             />
           </div>
         </div>
-        <div className="mt-4 sm:mt-8 text-center">
-          <p className="text-base sm:text-lg font-semibold mb-2">
-            👋 Tour de table
-          </p>
-          <p className="text-sm sm:text-base text-muted-foreground px-2">
-            Prénom • Expérience en dev • Attentes de la formation
-          </p>
-        </div>
       </div>
     ),
     notes:

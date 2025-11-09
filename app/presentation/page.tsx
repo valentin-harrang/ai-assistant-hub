@@ -27,7 +27,9 @@ export default function PresentationPage() {
   return (
     <div
       ref={containerRef}
-      className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800"
+      className={`${
+        isFullscreen ? "h-screen overflow-y-auto" : "min-h-screen"
+      } bg-linear-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800`}
     >
       <div className="fixed top-2 left-2 sm:top-4 sm:left-4 z-50 flex gap-2">
         <Link href="/">
@@ -53,10 +55,20 @@ export default function PresentationPage() {
         </Button>
       </div>
 
-      <div className="flex items-center justify-center min-h-screen p-2 sm:p-4 md:p-8">
+      <div
+        className={`flex ${
+          isFullscreen ? "items-start" : "items-center"
+        } justify-center ${isFullscreen ? "py-4" : "min-h-screen p-2 sm:p-4 md:p-8"}`}
+      >
         <div className="w-full max-w-5xl">
-          <Card className="p-4 sm:p-6 md:p-8 lg:p-12 min-h-[calc(100vh-8rem)] sm:min-h-150 flex flex-col">
-            <div className="flex-1 flex items-center justify-center overflow-auto">
+          <Card
+            className={`p-4 sm:p-6 md:p-8 lg:p-12 ${
+              isFullscreen
+                ? "my-4"
+                : "min-h-[calc(100vh-8rem)] sm:min-h-150"
+            } flex flex-col`}
+          >
+            <div className="flex-1 flex items-center justify-center">
               <div className="w-full">{slides[currentSlide]?.content}</div>
             </div>
 

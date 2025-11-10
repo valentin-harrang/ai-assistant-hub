@@ -120,7 +120,7 @@ export default function QuizConfigPage() {
               value={difficulty}
               onChange={(e) => setDifficulty(e.target.value as "Facile" | "Moyen" | "Difficile")}
               disabled={isLoading}
-              className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+              className="flex h-9 w-full rounded-md border border-input bg-white dark:bg-slate-950 px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
             >
               <option value="Facile">Facile</option>
               <option value="Moyen">Moyen</option>
@@ -138,7 +138,7 @@ export default function QuizConfigPage() {
               value={numQuestions}
               onChange={(e) => setNumQuestions(Number(e.target.value) as 5 | 10 | 15)}
               disabled={isLoading}
-              className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+              className="flex h-9 w-full rounded-md border border-input bg-white dark:bg-slate-950 px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
             >
               <option value={5}>5 questions</option>
               <option value={10}>10 questions</option>

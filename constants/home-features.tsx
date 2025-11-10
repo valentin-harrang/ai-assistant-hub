@@ -7,6 +7,7 @@ import {
   GraduationCap,
   Presentation,
   Brain,
+  Linkedin,
 } from "lucide-react";
 
 export interface HomeFeature {
@@ -55,6 +56,15 @@ export const homeFeatures: HomeFeature[] = [
     badge: "CSR",
     badgeVariant: "default" as const,
     gradient: "from-purple-500 to-fuchsia-500",
+  },
+  {
+    title: "Posts LinkedIn",
+    description: "Créez des posts LinkedIn optimisés pour l'algorithme 2025",
+    href: "/linkedin-generator",
+    icon: Linkedin,
+    badge: "CSR",
+    badgeVariant: "default" as const,
+    gradient: "from-blue-600 to-cyan-600",
   },
   {
     title: "Ressources",

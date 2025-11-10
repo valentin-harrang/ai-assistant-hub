@@ -6,6 +6,7 @@ import {
   Atom,
   GraduationCap,
   Presentation,
+  Brain,
 } from "lucide-react";
 
 export interface HomeFeature {
@@ -45,6 +46,15 @@ export const homeFeatures: HomeFeature[] = [
     badge: "CSR",
     badgeVariant: "default" as const,
     gradient: "from-green-500 to-emerald-500",
+  },
+  {
+    title: "Quiz Intelligent",
+    description: "Générez des quiz personnalisés sur n'importe quel sujet",
+    href: "/quiz",
+    icon: Brain,
+    badge: "CSR",
+    badgeVariant: "default" as const,
+    gradient: "from-purple-500 to-fuchsia-500",
   },
   {
     title: "Ressources",

@@ -8,6 +8,7 @@ import {
   Presentation,
   Brain,
   Linkedin,
+  Users,
 } from "lucide-react";
 
 export interface HomeFeature {
@@ -29,6 +30,15 @@ export const homeFeatures: HomeFeature[] = [
     badge: "CSR",
     badgeVariant: "default" as const,
     gradient: "from-blue-500 to-cyan-500",
+  },
+  {
+    title: "Chat Collaboratif",
+    description: "Chat multi-utilisateurs en temps réel avec WebSocket et IA",
+    href: "/collaborative-chat",
+    icon: Users,
+    badge: "WebSocket",
+    badgeVariant: "default" as const,
+    gradient: "from-purple-500 to-blue-500",
   },
   {
     title: "Générateur d'Idées",

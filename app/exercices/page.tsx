@@ -293,17 +293,17 @@ export default function ExercicesPage() {
           return (
             <Card
               key={exercice.numero}
-              className={`p-6 ${
+              className={`p-6 overflow-hidden ${
                 colorClasses[exercice.color as keyof typeof colorClasses]
               }`}
             >
-              <div className="flex items-start gap-4">
+              <div className="flex items-start gap-4 min-w-0">
                 <div className="shrink-0">
                   <div className="w-12 h-12 rounded-full bg-background border-2 border-foreground/10 flex items-center justify-center font-bold text-lg">
                     {exercice.numero}
                   </div>
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-3 mb-2">
                     <Icon className="size-5 text-foreground" />
                     <h3 className="text-xl font-bold">{exercice.titre}</h3>

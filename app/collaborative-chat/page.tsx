@@ -1,20 +1,21 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card } from '@/components/ui/card';
-import { Bot, Send, Users, Wifi, WifiOff, MessageCircle } from 'lucide-react';
-import { useCollaborativeChat } from '@/hooks/use-collaborative-chat';
+import { useState, useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card } from "@/components/ui/card";
+import { Bot, Send, Users, Wifi, WifiOff, MessageCircle } from "lucide-react";
+import { useCollaborativeChat } from "@/hooks/use-collaborative-chat";
 
-const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3001';
+const SOCKET_URL =
+  process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:3001";
 
 export default function CollaborativeChatPage() {
   // Local state for UI
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
   const [hasJoined, setHasJoined] = useState(false);
-  const [inputMessage, setInputMessage] = useState('');
-  const [error, setError] = useState('');
+  const [inputMessage, setInputMessage] = useState("");
+  const [error, setError] = useState("");
 
   // Ref for auto-scroll
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -35,7 +36,7 @@ export default function CollaborativeChatPage() {
 
   // Auto-scroll to bottom
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -47,7 +48,7 @@ export default function CollaborativeChatPage() {
     const success = joinChat(username);
     if (success) {
       setHasJoined(true);
-      setError('');
+      setError("");
     }
   };
 
@@ -55,7 +56,7 @@ export default function CollaborativeChatPage() {
   const handleSendMessage = () => {
     const success = sendMessage(inputMessage);
     if (success) {
-      setInputMessage('');
+      setInputMessage("");
     }
   };
 
@@ -68,9 +69,9 @@ export default function CollaborativeChatPage() {
   // Format timestamp
   const formatTime = (timestamp: number) => {
     const date = new Date(timestamp);
-    return date.toLocaleTimeString('fr-FR', {
-      hour: '2-digit',
-      minute: '2-digit',
+    return date.toLocaleTimeString("fr-FR", {
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
@@ -89,7 +90,8 @@ export default function CollaborativeChatPage() {
               Chat Collaboratif
             </h1>
             <p className="text-gray-600 dark:text-gray-400">
-              Discutez en temps réel avec d&apos;autres utilisateurs et l&apos;IA
+              Discutez en temps réel avec d&apos;autres utilisateurs et
+              l&apos;IA
             </p>
           </div>
 
@@ -103,7 +105,7 @@ export default function CollaborativeChatPage() {
                 placeholder="Votre pseudo (max 20 caractères)"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleJoin()}
+                onKeyPress={(e) => e.key === "Enter" && handleJoin()}
                 maxLength={20}
                 className="text-base"
               />
@@ -144,7 +146,9 @@ export default function CollaborativeChatPage() {
 
           <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
             <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
-              💡 Mentionnez <span className="font-mono font-semibold">@chatbot</span> dans vos messages pour invoquer l&apos;IA
+              💡 Mentionnez{" "}
+              <span className="font-mono font-semibold">@chatbot</span> dans vos
+              messages pour invoquer l&apos;IA
             </p>
           </div>
         </Card>
@@ -168,7 +172,10 @@ export default function CollaborativeChatPage() {
                   Chat Collaboratif
                 </h1>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Connecté en tant que <span className="font-semibold text-purple-600 dark:text-purple-400">{username}</span>
+                  Connecté en tant que{" "}
+                  <span className="font-semibold text-purple-600 dark:text-purple-400">
+                    {username}
+                  </span>
                 </p>
               </div>
             </div>
@@ -195,7 +202,8 @@ export default function CollaborativeChatPage() {
               <div className="flex items-center gap-2 bg-purple-100 dark:bg-purple-900/30 px-3 py-2 rounded-lg">
                 <Users className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                 <span className="text-sm font-semibold text-purple-700 dark:text-purple-300">
-                  {users.length} {users.length === 1 ? 'utilisateur' : 'utilisateurs'}
+                  {users.length}{" "}
+                  {users.length === 1 ? "utilisateur" : "utilisateurs"}
                 </span>
               </div>
             </div>
@@ -237,17 +245,17 @@ export default function CollaborativeChatPage() {
                   key={message.id}
                   className={`flex ${
                     message.username === username && !message.isAI
-                      ? 'justify-end'
-                      : 'justify-start'
+                      ? "justify-end"
+                      : "justify-start"
                   }`}
                 >
                   <div
                     className={`max-w-[70%] ${
                       message.isAI
-                        ? 'bg-gradient-to-r from-purple-500 to-blue-500 text-white'
+                        ? "bg-gradient-to-r from-purple-500 to-blue-500 text-white"
                         : message.username === username
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white'
+                        ? "bg-blue-500 text-white"
+                        : "bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white"
                     } rounded-2xl px-4 py-3 shadow-md`}
                   >
                     <div className="flex items-center gap-2 mb-1">
@@ -264,11 +272,13 @@ export default function CollaborativeChatPage() {
                     <p className="text-sm whitespace-pre-wrap break-words">
                       {message.text}
                     </p>
-                    <p className={`text-xs mt-1 ${
-                      message.isAI || message.username === username
-                        ? 'text-white/70'
-                        : 'text-gray-500 dark:text-gray-400'
-                    }`}>
+                    <p
+                      className={`text-xs mt-1 ${
+                        message.isAI || message.username === username
+                          ? "text-white/70"
+                          : "text-gray-500 dark:text-gray-400"
+                      }`}
+                    >
                       {formatTime(message.timestamp)}
                     </p>
                   </div>
@@ -281,7 +291,9 @@ export default function CollaborativeChatPage() {
               <div className="flex justify-start">
                 <div className="bg-gray-100 dark:bg-gray-700 rounded-2xl px-4 py-2 shadow-md">
                   <p className="text-sm text-gray-600 dark:text-gray-400 italic">
-                    {typingUsers.join(', ')} {typingUsers.length === 1 ? 'est' : 'sont'} en train d&apos;écrire...
+                    {typingUsers.join(", ")}{" "}
+                    {typingUsers.length === 1 ? "est" : "sont"} en train
+                    d&apos;écrire...
                   </p>
                 </div>
               </div>
@@ -299,7 +311,7 @@ export default function CollaborativeChatPage() {
               placeholder="Votre message... (Utilisez @chatbot pour invoquer l'IA)"
               value={inputMessage}
               onChange={(e) => handleInputChange(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+              onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
               className="flex-1 text-base"
               maxLength={1000}
             />
@@ -312,7 +324,9 @@ export default function CollaborativeChatPage() {
             </Button>
           </div>
           <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-            💡 Astuce : Mentionnez <span className="font-mono font-semibold">@chatbot</span> pour poser une question à l&apos;IA
+            💡 Astuce : Mentionnez{" "}
+            <span className="font-mono font-semibold">@chatbot</span> pour poser
+            une question à l&apos;IA
           </p>
         </div>
       </div>

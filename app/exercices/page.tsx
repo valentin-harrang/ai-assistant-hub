@@ -10,6 +10,8 @@ import {
   Key,
   Info,
   XCircle,
+  Server,
+  MessageSquare,
 } from "lucide-react";
 import {
   Accordion,
@@ -337,7 +339,7 @@ export default function ExercicesPage() {
                             <div className="flex items-center gap-2">
                               <FileCode className="size-4 text-purple-600 dark:text-purple-400" />
                               <span className="font-semibold text-sm">
-                                Voir l'architecture et les indices
+                                Voir l&apos;architecture et les indices
                               </span>
                             </div>
                           </AccordionTrigger>
@@ -352,12 +354,24 @@ export default function ExercicesPage() {
                                   </h5>
                                 </div>
                                 <div className="space-y-2 text-xs">
-                                  <p>Le projet nécessite deux serveurs qui tournent simultanément :</p>
+                                  <p>
+                                    Le projet nécessite deux serveurs qui
+                                    tournent simultanément :
+                                  </p>
                                   <ul className="list-disc list-inside space-y-1 ml-2">
-                                    <li><strong>Serveur Next.js</strong> : Port 3000 (interface utilisateur)</li>
-                                    <li><strong>Serveur Socket.IO</strong> : Port 3001 (WebSocket pour le temps réel)</li>
+                                    <li>
+                                      <strong>Serveur Next.js</strong> : Port
+                                      3000 (interface utilisateur)
+                                    </li>
+                                    <li>
+                                      <strong>Serveur Socket.IO</strong> : Port
+                                      3001 (WebSocket pour le temps réel)
+                                    </li>
                                   </ul>
-                                  <p className="mt-3">Les deux communiquent via WebSocket pour synchroniser les messages en temps réel.</p>
+                                  <p className="mt-3">
+                                    Les deux communiquent via WebSocket pour
+                                    synchroniser les messages en temps réel.
+                                  </p>
                                 </div>
                               </div>
 
@@ -371,9 +385,22 @@ export default function ExercicesPage() {
                                 </div>
                                 <div className="space-y-2 text-xs">
                                   <pre className="bg-background p-2 rounded border text-xs overflow-x-auto">
-                                    <code>npm install socket.io socket.io-client dotenv tsx concurrently</code>
+                                    <code>
+                                      npm install socket.io socket.io-client
+                                      dotenv tsx concurrently
+                                    </code>
                                   </pre>
-                                  <p className="mt-2">Vérifiez que <code className="bg-muted px-1 rounded">ai</code> et <code className="bg-muted px-1 rounded">@ai-sdk/groq</code> sont déjà installés.</p>
+                                  <p className="mt-2">
+                                    Vérifiez que{" "}
+                                    <code className="bg-muted px-1 rounded">
+                                      ai
+                                    </code>{" "}
+                                    et{" "}
+                                    <code className="bg-muted px-1 rounded">
+                                      @ai-sdk/groq
+                                    </code>{" "}
+                                    sont déjà installés.
+                                  </p>
                                 </div>
                               </div>
 
@@ -386,20 +413,60 @@ export default function ExercicesPage() {
                                   </h5>
                                 </div>
                                 <div className="space-y-2 text-xs">
-                                  <p><strong>Créer :</strong> <code className="bg-muted px-1 rounded">server.ts</code> à la racine du projet</p>
-                                  <p className="mt-2"><strong>Fonctionnalités clés à implémenter :</strong></p>
+                                  <p>
+                                    <strong>Créer :</strong>{" "}
+                                    <code className="bg-muted px-1 rounded">
+                                      server.ts
+                                    </code>{" "}
+                                    à la racine du projet
+                                  </p>
+                                  <p className="mt-2">
+                                    <strong>
+                                      Fonctionnalités clés à implémenter :
+                                    </strong>
+                                  </p>
                                   <ul className="list-disc list-inside space-y-1 ml-2">
-                                    <li>Importer et configurer <code>dotenv</code> pour charger les variables d'environnement</li>
-                                    <li>Créer un serveur HTTP avec <code>createServer()</code></li>
-                                    <li>Initialiser Socket.IO avec configuration CORS pour localhost:3000</li>
-                                    <li>Stocker les messages et utilisateurs en mémoire (Map ou Array)</li>
-                                    <li>Événements à gérer : <code>connection</code>, <code>disconnect</code>, <code>user:join</code>, <code>message:send</code></li>
-                                    <li>Détecter @chatbot avec regex : <code>/(@chatbot|@ai|@assistant)/i</code></li>
-                                    <li>Appeler <code>generateText()</code> avec le modèle <code>llama-3.3-70b-versatile</code></li>
-                                    <li>Utiliser <code>io.emit()</code> pour broadcaster les messages</li>
+                                    <li>
+                                      Importer et configurer <code>dotenv</code>{" "}
+                                      pour charger les variables d&apos;environnement
+                                    </li>
+                                    <li>
+                                      Créer un serveur HTTP avec{" "}
+                                      <code>createServer()</code>
+                                    </li>
+                                    <li>
+                                      Initialiser Socket.IO avec configuration
+                                      CORS pour localhost:3000
+                                    </li>
+                                    <li>
+                                      Stocker les messages et utilisateurs en
+                                      mémoire (Map ou Array)
+                                    </li>
+                                    <li>
+                                      Événements à gérer :{" "}
+                                      <code>connection</code>,{" "}
+                                      <code>disconnect</code>,{" "}
+                                      <code>user:join</code>,{" "}
+                                      <code>message:send</code>
+                                    </li>
+                                    <li>
+                                      Détecter @chatbot avec regex :{" "}
+                                      <code>/(@chatbot|@ai|@assistant)/i</code>
+                                    </li>
+                                    <li>
+                                      Appeler <code>generateText()</code> avec
+                                      le modèle{" "}
+                                      <code>llama-3.3-70b-versatile</code>
+                                    </li>
+                                    <li>
+                                      Utiliser <code>io.emit()</code> pour
+                                      broadcaster les messages
+                                    </li>
                                   </ul>
                                   <p className="mt-3 p-2 bg-amber-50 dark:bg-amber-950/20 rounded border border-amber-200 dark:border-amber-800">
-                                    <strong>💡 Astuce :</strong> Le serveur écoute sur le port 3001 avec <code>httpServer.listen(3001)</code>
+                                    <strong>💡 Astuce :</strong> Le serveur
+                                    écoute sur le port 3001 avec{" "}
+                                    <code>httpServer.listen(3001)</code>
                                   </p>
                                 </div>
                               </div>
@@ -435,30 +502,74 @@ interface User {
                                 <div className="flex items-center gap-2 mb-3">
                                   <MessageSquare className="size-4 text-blue-600 dark:text-blue-400" />
                                   <h5 className="font-semibold text-sm">
-                                    💬 Page Client (app/collaborative-chat/page.tsx)
+                                    💬 Page Client
+                                    (app/collaborative-chat/page.tsx)
                                   </h5>
                                 </div>
                                 <div className="space-y-2 text-xs">
-                                  <p><strong>Important :</strong> Ajouter <code className="bg-muted px-1 rounded">'use client'</code> en haut du fichier</p>
-                                  <p className="mt-2"><strong>Hooks React à utiliser :</strong></p>
+                                  <p>
+                                    <strong>Important :</strong> Ajouter{" "}
+                                    <code className="bg-muted px-1 rounded">
+                                      &apos;use client&apos;
+                                    </code>{" "}
+                                    en haut du fichier
+                                  </p>
+                                  <p className="mt-2">
+                                    <strong>Hooks React à utiliser :</strong>
+                                  </p>
                                   <ul className="list-disc list-inside space-y-1 ml-2">
-                                    <li><code>useState</code> : pour socket, messages, utilisateurs, pseudo, connexion</li>
-                                    <li><code>useEffect</code> : pour initialiser la connexion Socket.IO et écouter les événements</li>
-                                    <li><code>useRef</code> : pour l'auto-scroll (messagesEndRef) et le timeout du typing</li>
+                                    <li>
+                                      <code>useState</code> : pour socket,
+                                      messages, utilisateurs, pseudo, connexion
+                                    </li>
+                                    <li>
+                                      <code>useEffect</code> : pour initialiser
+                                      la connexion Socket.IO et écouter les
+                                      événements
+                                    </li>
+                                    <li>
+                                      <code>useRef</code> : pour l&apos;auto-scroll
+                                      (messagesEndRef) et le timeout du typing
+                                    </li>
                                   </ul>
-                                  <p className="mt-2"><strong>Connexion Socket.IO :</strong></p>
+                                  <p className="mt-2">
+                                    <strong>Connexion Socket.IO :</strong>
+                                  </p>
                                   <pre className="bg-background p-2 rounded border text-xs overflow-x-auto">
-                                    <code>import {`{ io }`} from 'socket.io-client';
-
-const socket = io('http://localhost:3001');</code>
+                                    <code>
+                                      import {`{ io }`} from &apos;socket.io-client&apos;;
+                                      const socket =
+                                      io(&apos;http://localhost:3001&apos;);
+                                    </code>
                                   </pre>
-                                  <p className="mt-2"><strong>Événements côté client à écouter :</strong></p>
+                                  <p className="mt-2">
+                                    <strong>
+                                      Événements côté client à écouter :
+                                    </strong>
+                                  </p>
                                   <ul className="list-disc list-inside space-y-1 ml-2">
-                                    <li><code>connect</code> / <code>disconnect</code> : gestion de l'état de connexion</li>
-                                    <li><code>message:history</code> : recevoir l'historique à la connexion</li>
-                                    <li><code>message:new</code> : recevoir un nouveau message</li>
-                                    <li><code>users:list</code> : liste des utilisateurs connectés</li>
-                                    <li><code>user:typing</code> / <code>user:stop-typing</code> : indicateurs de frappe</li>
+                                    <li>
+                                      <code>connect</code> /{" "}
+                                      <code>disconnect</code> : gestion de
+                                      l&apos;état de connexion
+                                    </li>
+                                    <li>
+                                      <code>message:history</code> : recevoir
+                                      l&apos;historique à la connexion
+                                    </li>
+                                    <li>
+                                      <code>message:new</code> : recevoir un
+                                      nouveau message
+                                    </li>
+                                    <li>
+                                      <code>users:list</code> : liste des
+                                      utilisateurs connectés
+                                    </li>
+                                    <li>
+                                      <code>user:typing</code> /{" "}
+                                      <code>user:stop-typing</code> :
+                                      indicateurs de frappe
+                                    </li>
                                   </ul>
                                 </div>
                               </div>
@@ -472,18 +583,39 @@ const socket = io('http://localhost:3001');</code>
                                   </h5>
                                 </div>
                                 <div className="space-y-2 text-xs">
-                                  <p><strong>Deux écrans à créer :</strong></p>
+                                  <p>
+                                    <strong>Deux écrans à créer :</strong>
+                                  </p>
                                   <ol className="list-decimal list-inside space-y-1 ml-2">
-                                    <li><strong>Écran de connexion :</strong> Input pour le pseudo + bouton "Rejoindre"</li>
-                                    <li><strong>Écran de chat :</strong> Header (pseudo + nb users) + zone messages + input message</li>
+                                    <li>
+                                      <strong>Écran de connexion :</strong>{" "}
+                                      Input pour le pseudo + bouton &quot;Rejoindre&quot;{" "}
+                                    </li>
+                                    <li>
+                                      <strong>Écran de chat :</strong> Header
+                                      (pseudo + nb users) + zone messages +
+                                      input message
+                                    </li>
                                   </ol>
-                                  <p className="mt-2"><strong>Alignement des messages :</strong></p>
+                                  <p className="mt-2">
+                                    <strong>Alignement des messages :</strong>
+                                  </p>
                                   <ul className="list-disc list-inside space-y-1 ml-2">
-                                    <li>Vos messages : alignés à droite, fond bleu</li>
-                                    <li>Messages des autres : alignés à gauche, fond gris</li>
-                                    <li>Messages IA : fond dégradé violet/bleu avec icône 🤖</li>
+                                    <li>
+                                      Vos messages : alignés à droite, fond bleu
+                                    </li>
+                                    <li>
+                                      Messages des autres : alignés à gauche,
+                                      fond gris
+                                    </li>
+                                    <li>
+                                      Messages IA : fond dégradé violet/bleu
+                                      avec icône 🤖
+                                    </li>
                                   </ul>
-                                  <p className="mt-2"><strong>Auto-scroll :</strong></p>
+                                  <p className="mt-2">
+                                    <strong>Auto-scroll :</strong>
+                                  </p>
                                   <pre className="bg-background p-2 rounded border text-xs overflow-x-auto">
                                     <code>{`const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -503,14 +635,26 @@ useEffect(() => {
                                   </h5>
                                 </div>
                                 <div className="space-y-2 text-xs">
-                                  <p>Ajouter ces scripts dans <code className="bg-muted px-1 rounded">package.json</code> :</p>
+                                  <p>
+                                    Ajouter ces scripts dans{" "}
+                                    <code className="bg-muted px-1 rounded">
+                                      package.json
+                                    </code>{" "}
+                                    :
+                                  </p>
                                   <pre className="bg-background p-2 rounded border text-xs overflow-x-auto">
                                     <code>{`"scripts": {
   "socket": "tsx server.ts",
   "dev:all": "concurrently \\"npm run dev\\" \\"npm run socket\\" --names \\"next,socket\\" --prefix-colors \\"blue,magenta\\""
 }`}</code>
                                   </pre>
-                                  <p className="mt-2">Pour lancer les deux serveurs en même temps : <code className="bg-muted px-1 rounded">npm run dev:all</code></p>
+                                  <p className="mt-2">
+                                    Pour lancer les deux serveurs en même temps
+                                    :{" "}
+                                    <code className="bg-muted px-1 rounded">
+                                      npm run dev:all
+                                    </code>
+                                  </p>
                                 </div>
                               </div>
 
@@ -521,13 +665,31 @@ useEffect(() => {
                                   ✅ Tests à effectuer
                                 </h5>
                                 <ul className="text-xs space-y-1 ml-6 list-disc">
-                                  <li>Ouvrir deux onglets avec des pseudos différents</li>
-                                  <li>Envoyer des messages et vérifier qu'ils apparaissent dans les deux fenêtres</li>
-                                  <li>Vérifier que la liste des utilisateurs se met à jour</li>
-                                  <li>Taper un message et vérifier l'indicateur "en train d'écrire..."</li>
-                                  <li>Envoyer un message avec @chatbot et vérifier la réponse de l'IA</li>
-                                  <li>Déconnecter un utilisateur et vérifier que la liste se met à jour</li>
-                                  <li>Vérifier que l'auto-scroll fonctionne</li>
+                                  <li>
+                                    Ouvrir deux onglets avec des pseudos
+                                    différents
+                                  </li>
+                                  <li>
+                                    Envoyer des messages et vérifier qu&apos;ils
+                                    apparaissent dans les deux fenêtres
+                                  </li>
+                                  <li>
+                                    Vérifier que la liste des utilisateurs se
+                                    met à jour
+                                  </li>
+                                  <li>
+                                    Taper un message et vérifier l&apos;indicateur
+                                    &quot;en train d&apos;écrire...&quot;
+                                  </li>
+                                  <li>
+                                    Envoyer un message avec @chatbot et vérifier
+                                    la réponse de l&apos;IA
+                                  </li>
+                                  <li>
+                                    Déconnecter un utilisateur et vérifier que
+                                    la liste se met à jour
+                                  </li>
+                                  <li>Vérifier que l&apos;auto-scroll fonctionne</li>
                                 </ul>
                               </div>
 
@@ -943,7 +1105,9 @@ export default async function IdeePage() {
             <li className="flex items-start gap-2">
               <CheckCircle2 className="size-4 text-green-600 dark:text-green-400 shrink-0 mt-0.5" />
               <span>
-                <strong>(Bonus)</strong> Le chat collaboratif fonctionne avec WebSocket : plusieurs utilisateurs peuvent discuter en temps réel et l&apos;IA répond aux mentions @chatbot
+                <strong>(Bonus)</strong> Le chat collaboratif fonctionne avec
+                WebSocket : plusieurs utilisateurs peuvent discuter en temps
+                réel et l&apos;IA répond aux mentions @chatbot
               </span>
             </li>
             <li className="flex items-start gap-2">

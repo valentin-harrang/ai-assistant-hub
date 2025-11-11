@@ -1,4 +1,4 @@
-import { Code, Lightbulb, MessageSquare, Rocket, Server } from "lucide-react";
+import { Code, Lightbulb, MessageSquare, Rocket, Server, Users } from "lucide-react";
 
 export const exercices = [
   {
@@ -72,6 +72,35 @@ export const exercices = [
       "Configurer le modèle Groq avec la clé API",
       "Retourner `result.toTextStreamResponse()` ou `result.toUIMessageStreamResponse()`",
       "Gérer les erreurs (clé API manquante, etc.)",
+    ],
+  },
+  {
+    numero: 6,
+    titre: "Chat Collaboratif en Temps Réel avec WebSocket et IA",
+    description: "Créer un chat multi-utilisateurs avec Socket.IO et intégration IA conditionnelle",
+    icon: Users,
+    color: "purple",
+    details: [
+      "Installer les dépendances : `socket.io`, `socket.io-client`, `dotenv`, `tsx`, `concurrently`",
+      "Créer un serveur WebSocket standalone (`server.ts`) avec Socket.IO sur le port 3001",
+      "Configurer le serveur pour charger les variables d'environnement avec dotenv",
+      "Implémenter la gestion des connexions/déconnexions des utilisateurs",
+      "Créer un système de pseudos uniques avec validation (max 20 caractères)",
+      "Gérer l'historique des messages en mémoire (stockage temporaire)",
+      "Implémenter le broadcast des messages à tous les clients connectés",
+      "Détecter les mentions @chatbot avec une regex (case-insensitive)",
+      "Intégrer l'IA (Groq avec Llama 3.3 70B) qui analyse les 5 derniers messages pour répondre",
+      "Créer la page client (`app/collaborative-chat/page.tsx`) avec 'use client'",
+      "Implémenter la connexion Socket.IO côté client avec gestion de l'état (connecté/déconnecté)",
+      "Créer une page de connexion pour choisir un pseudo avant d'entrer dans le chat",
+      "Afficher la liste des utilisateurs connectés en temps réel",
+      "Implémenter l'affichage des messages avec distinction visuelle (utilisateurs vs IA)",
+      "Ajouter un indicateur 'en train d'écrire...' avec les événements `user:typing` et `user:stop-typing`",
+      "Implémenter l'auto-scroll vers les nouveaux messages avec useRef",
+      "Créer un design responsive avec Tailwind (messages alignés, couleurs différentes pour l'IA)",
+      "Ajouter les scripts npm dans `package.json` : `socket` et `dev:all` (avec concurrently)",
+      "Tester avec plusieurs onglets/navigateurs en utilisant différents pseudos",
+      "Vérifier que l'IA répond correctement quand on mentionne @chatbot dans un message",
     ],
   },
 ];

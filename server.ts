@@ -53,7 +53,7 @@ const httpServer = createServer();
 // Create Socket.IO server with CORS
 const io = new Server(httpServer, {
   cors: {
-    origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+    origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://172.16.0.127:3000'],
     methods: ['GET', 'POST'],
     credentials: true,
   },

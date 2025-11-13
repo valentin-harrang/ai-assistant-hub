@@ -31,7 +31,6 @@ export default function SpellCheckDemoPage() {
       <PageHeader
         title="Démonstration de Correction Orthographique"
         description="Testez la correction orthographique automatique avec l'IA"
-        badge="Démo"
       />
 
       <div className="space-y-8">

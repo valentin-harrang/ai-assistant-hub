@@ -55,7 +55,6 @@ Consigne stricte : Corrige UNIQUEMENT les fautes d'orthographe et de grammaire d
 Texte à corriger :
 ${text}`,
       temperature: 0.1, // Température basse pour des corrections cohérentes
-      maxTokens: Math.max(text.length * 2, 500), // Ajuster selon la longueur du texte
     });
 
     // Nettoyer la réponse (enlever les guillemets si présents)

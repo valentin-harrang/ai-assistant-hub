@@ -219,13 +219,18 @@ export default function FeedbackResultsPage() {
                             : "Date inconnue"}
                         </CardDescription>
                       </div>
-                      <Badge
-                        className={getRecommendationColor(
-                          feedback.would_recommend
-                        )}
-                      >
-                        {getRecommendationLabel(feedback.would_recommend)}
-                      </Badge>
+                      <div className="flex flex-col items-end gap-1">
+                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                          Recommandation
+                        </span>
+                        <Badge
+                          className={getRecommendationColor(
+                            feedback.would_recommend
+                          )}
+                        >
+                          {getRecommendationLabel(feedback.would_recommend)}
+                        </Badge>
+                      </div>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-4">

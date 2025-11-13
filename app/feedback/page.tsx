@@ -152,7 +152,7 @@ export default function FeedbackPage() {
                 className="bg-[#0077B5] hover:bg-[#006399] text-white"
               >
                 <a
-                  href="https://www.linkedin.com/in/valentin-thomas-dev/"
+                  href="https://www.linkedin.com/in/valentin-harrang/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2"

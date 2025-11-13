@@ -24,6 +24,7 @@ import {
   Cpu,
   Terminal,
   Search,
+  Mail,
 } from "lucide-react";
 
 export interface Ressource {
@@ -1116,6 +1117,39 @@ export const ressources: Ressource[] = [
       textDark: "dark:text-teal-400",
     },
   },
+  {
+    slug: "resend",
+    name: "Resend",
+    category: "Email",
+    icon: Mail,
+    description: "API d'email moderne pour développeurs",
+    longDescription:
+      "Resend est une API d'email conçue pour les développeurs, offrant une intégration simple et efficace pour l'envoi d'emails transactionnels et marketing à grande échelle. Elle propose des SDKs pour divers langages et une excellente délivrabilité.",
+    website: "https://resend.com",
+    npmPackage: "resend",
+    useCases: [
+      "Emails transactionnels (confirmations, réinitialisations)",
+      "Emails marketing",
+      "Notifications par email",
+      "Emails en lot",
+      "Templates d'emails React",
+    ],
+    features: [
+      "Intégration simple avec SDKs",
+      "API batch (jusqu'à 100 emails par requête)",
+      "Webhooks pour événements",
+      "Excellent délivrabilité",
+      "Support React Email",
+      "TypeScript support",
+      "Documentation complète",
+    ],
+    color: {
+      bg: "bg-blue-100",
+      bgDark: "dark:bg-blue-900/30",
+      text: "text-blue-600",
+      textDark: "dark:text-blue-400",
+    },
+  },
 ];
 
 export const categories = [
@@ -1134,6 +1168,7 @@ export const categories = [
   "Tables",
   "Authentication",
   "Utilities",
+  "Email",
   "AI Agents",
   "AI SDK",
   "AI Chat",

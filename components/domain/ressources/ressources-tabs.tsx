@@ -70,6 +70,7 @@ const categoryGroups = [
       "Onboarding",
       "Development",
       "Authentication",
+      "Email",
     ],
   },
 ];

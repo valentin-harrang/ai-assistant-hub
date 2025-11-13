@@ -30,6 +30,15 @@ import { CheckCircle2, Linkedin, Clock } from "lucide-react";
 const EXPIRATION_DATE = new Date();
 EXPIRATION_DATE.setHours(23, 59, 59, 999);
 
+// Mapping des labels vers les valeurs numériques
+const ratingLabels = [
+  { value: "1", label: "Insuffisant" },
+  { value: "2", label: "Moyen" },
+  { value: "3", label: "Bien" },
+  { value: "4", label: "Très bien" },
+  { value: "5", label: "Excellent" },
+];
+
 // Schema de validation Zod (formulaire anonyme)
 const feedbackSchema = z.object({
   learningRating: z.enum(["1", "2", "3", "4", "5"], {
@@ -213,16 +222,15 @@ export default function FeedbackPage() {
                     render={({ field }) => (
                       <FormItem className="space-y-3">
                         <FormLabel>
-                          Sur une échelle de 1 à 5, combien avez-vous appris
-                          pendant ces 3 jours ?
+                          Combien avez-vous appris pendant ces 3 jours ?
                         </FormLabel>
                         <FormControl>
                           <RadioGroup
                             onValueChange={field.onChange}
                             defaultValue={field.value}
-                            className="flex gap-4"
+                            className="flex flex-wrap gap-3"
                           >
-                            {["1", "2", "3", "4", "5"].map((value) => (
+                            {ratingLabels.map(({ value, label }) => (
                               <div
                                 key={value}
                                 className="flex items-center space-x-2"
@@ -231,16 +239,13 @@ export default function FeedbackPage() {
                                   value={value}
                                   id={`learning-${value}`}
                                 />
-                                <Label htmlFor={`learning-${value}`}>
-                                  {value}
+                                <Label htmlFor={`learning-${value}`} className="cursor-pointer">
+                                  {label}
                                 </Label>
                               </div>
                             ))}
                           </RadioGroup>
                         </FormControl>
-                        <FormDescription>
-                          1 = Rien appris, 5 = Beaucoup appris
-                        </FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -252,16 +257,15 @@ export default function FeedbackPage() {
                     render={({ field }) => (
                       <FormItem className="space-y-3">
                         <FormLabel>
-                          Sur une échelle de 1 à 5, avez-vous apprécié cette
-                          formation ?
+                          Avez-vous apprécié cette formation ?
                         </FormLabel>
                         <FormControl>
                           <RadioGroup
                             onValueChange={field.onChange}
                             defaultValue={field.value}
-                            className="flex gap-4"
+                            className="flex flex-wrap gap-3"
                           >
-                            {["1", "2", "3", "4", "5"].map((value) => (
+                            {ratingLabels.map(({ value, label }) => (
                               <div
                                 key={value}
                                 className="flex items-center space-x-2"
@@ -270,16 +274,13 @@ export default function FeedbackPage() {
                                   value={value}
                                   id={`enjoyment-${value}`}
                                 />
-                                <Label htmlFor={`enjoyment-${value}`}>
-                                  {value}
+                                <Label htmlFor={`enjoyment-${value}`} className="cursor-pointer">
+                                  {label}
                                 </Label>
                               </div>
                             ))}
                           </RadioGroup>
                         </FormControl>
-                        <FormDescription>
-                          1 = Pas du tout, 5 = Énormément
-                        </FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}

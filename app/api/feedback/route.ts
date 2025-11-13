@@ -88,14 +88,71 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// GET pour vérifier si le formulaire est encore actif
+// GET pour récupérer tous les feedbacks avec statistiques
 export async function GET() {
-  const now = new Date();
-  const expirationDate = new Date();
-  expirationDate.setHours(23, 59, 59, 999);
+  try {
+    // Vérifier que le client admin est disponible
+    if (!supabaseAdmin) {
+      console.error('Supabase admin client not configured');
+      return NextResponse.json(
+        { error: 'Configuration serveur manquante' },
+        { status: 500 }
+      );
+    }
 
-  return NextResponse.json({
-    isActive: now <= expirationDate,
-    expiresAt: expirationDate.toISOString(),
-  });
+    // Récupérer tous les feedbacks
+    const { data: feedbacks, error } = await supabaseAdmin
+      .from('course_feedback')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('Supabase error:', error);
+      return NextResponse.json(
+        { error: 'Erreur lors de la récupération des feedbacks' },
+        { status: 500 }
+      );
+    }
+
+    // Calculer les statistiques
+    const totalResponses = feedbacks?.length || 0;
+    let averageLearning = 0;
+    let averageEnjoyment = 0;
+    const recommendationBreakdown = {
+      yes: 0,
+      no: 0,
+      maybe: 0,
+    };
+
+    if (feedbacks && feedbacks.length > 0) {
+      averageLearning =
+        feedbacks.reduce((sum, f) => sum + f.learning_rating, 0) /
+        totalResponses;
+      averageEnjoyment =
+        feedbacks.reduce((sum, f) => sum + f.enjoyment_rating, 0) /
+        totalResponses;
+
+      feedbacks.forEach((f) => {
+        if (f.would_recommend === 'yes') recommendationBreakdown.yes++;
+        else if (f.would_recommend === 'no') recommendationBreakdown.no++;
+        else if (f.would_recommend === 'maybe') recommendationBreakdown.maybe++;
+      });
+    }
+
+    return NextResponse.json({
+      feedbacks: feedbacks || [],
+      stats: {
+        totalResponses,
+        averageLearning,
+        averageEnjoyment,
+        recommendationBreakdown,
+      },
+    });
+  } catch (error) {
+    console.error('Unexpected error:', error);
+    return NextResponse.json(
+      { error: 'Erreur serveur' },
+      { status: 500 }
+    );
+  }
 }

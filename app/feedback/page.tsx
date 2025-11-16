@@ -26,9 +26,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { CheckCircle2, Linkedin, Clock } from "lucide-react";
 
-// Date d'expiration : aujourd'hui à 23h59
-const EXPIRATION_DATE = new Date();
-EXPIRATION_DATE.setHours(23, 59, 59, 999);
+// Date d'expiration : 15 novembre 2025 à 23h59
+const EXPIRATION_DATE = new Date("2025-11-15T23:59:59.999");
 
 // Mapping des labels vers les valeurs numériques
 const ratingLabels = [

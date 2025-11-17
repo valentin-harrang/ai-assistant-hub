@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -11,8 +8,11 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { BarChart3, TrendingUp, ThumbsUp, MessageSquare } from "lucide-react";
-import type { CourseFeedback } from "@/lib/supabase";
+import { supabaseAdmin, type CourseFeedback } from "@/lib/supabase";
 import { SpellCheckedText } from "@/components/shared/spell-checked-text";
+
+// Revalider toutes les 60 secondes (ISR)
+export const revalidate = 60;
 
 interface FeedbackStats {
   totalResponses: number;
@@ -25,30 +25,93 @@ interface FeedbackStats {
   };
 }
 
-export default function FeedbackResultsPage() {
-  const [feedbacks, setFeedbacks] = useState<CourseFeedback[]>([]);
-  const [stats, setStats] = useState<FeedbackStats | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchFeedbacks();
-  }, []);
-
-  const fetchFeedbacks = async () => {
-    try {
-      const response = await fetch("/api/feedback");
-      if (!response.ok) {
-        throw new Error("Erreur lors du chargement des feedbacks");
-      }
-      const data = await response.json();
-      setFeedbacks(data.feedbacks || []);
-      setStats(data.stats || null);
-    } catch (error) {
-      console.error("Error fetching feedbacks:", error);
-    } finally {
-      setLoading(false);
+async function getFeedbacksData(): Promise<{
+  feedbacks: CourseFeedback[];
+  stats: FeedbackStats;
+}> {
+  try {
+    if (!supabaseAdmin) {
+      console.error("Supabase admin client not configured");
+      return {
+        feedbacks: [],
+        stats: {
+          totalResponses: 0,
+          averageLearning: 0,
+          averageEnjoyment: 0,
+          recommendationBreakdown: { yes: 0, no: 0, maybe: 0 },
+        },
+      };
     }
-  };
+
+    // Récupérer tous les feedbacks
+    const { data: feedbacks, error } = await supabaseAdmin
+      .from("course_feedback")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("Supabase error:", error);
+      return {
+        feedbacks: [],
+        stats: {
+          totalResponses: 0,
+          averageLearning: 0,
+          averageEnjoyment: 0,
+          recommendationBreakdown: { yes: 0, no: 0, maybe: 0 },
+        },
+      };
+    }
+
+    // Calculer les statistiques
+    const totalResponses = feedbacks?.length || 0;
+    let averageLearning = 0;
+    let averageEnjoyment = 0;
+    const recommendationBreakdown = {
+      yes: 0,
+      no: 0,
+      maybe: 0,
+    };
+
+    if (feedbacks && feedbacks.length > 0) {
+      averageLearning =
+        feedbacks.reduce((sum, f) => sum + f.learning_rating, 0) /
+        totalResponses;
+      averageEnjoyment =
+        feedbacks.reduce((sum, f) => sum + f.enjoyment_rating, 0) /
+        totalResponses;
+
+      feedbacks.forEach((f) => {
+        if (f.would_recommend === "yes") recommendationBreakdown.yes++;
+        else if (f.would_recommend === "no") recommendationBreakdown.no++;
+        else if (f.would_recommend === "maybe") recommendationBreakdown.maybe++;
+      });
+    }
+
+    return {
+      feedbacks: feedbacks || [],
+      stats: {
+        totalResponses,
+        averageLearning,
+        averageEnjoyment,
+        recommendationBreakdown,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching feedbacks:", error);
+    return {
+      feedbacks: [],
+      stats: {
+        totalResponses: 0,
+        averageLearning: 0,
+        averageEnjoyment: 0,
+        recommendationBreakdown: { yes: 0, no: 0, maybe: 0 },
+      },
+    };
+  }
+}
+
+export default async function FeedbackResultsPage() {
+  const { feedbacks, stats } = await getFeedbacksData();
 
   const getRatingLabel = (rating: number) => {
     const labels = ["Insuffisant", "Moyen", "Bien", "Très bien", "Excellent"];
@@ -67,23 +130,12 @@ export default function FeedbackResultsPage() {
   const getRecommendationColor = (value: string) => {
     const colors: Record<string, string> = {
       yes: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400",
-      maybe: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400",
+      maybe:
+        "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400",
       no: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400",
     };
     return colors[value] || "bg-gray-100 text-gray-800";
   };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center p-4">
-        <Card className="w-full max-w-2xl">
-          <CardHeader className="text-center">
-            <CardTitle>Chargement des résultats...</CardTitle>
-          </CardHeader>
-        </Card>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12 px-4">

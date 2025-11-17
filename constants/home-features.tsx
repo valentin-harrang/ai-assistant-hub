@@ -84,8 +84,8 @@ export const homeFeatures: HomeFeature[] = [
       "Partagez votre avis anonymement pour améliorer les prochaines sessions",
     href: "/feedback/results",
     icon: Megaphone,
-    badge: "CSR",
-    badgeVariant: "default" as const,
+    badge: "ISR",
+    badgeVariant: "secondary" as const,
     gradient: "from-rose-500 to-orange-500",
   },
   {

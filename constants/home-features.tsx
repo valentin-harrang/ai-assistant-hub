@@ -82,10 +82,10 @@ export const homeFeatures: HomeFeature[] = [
     title: "Feedback Formation",
     description:
       "Partagez votre avis anonymement pour améliorer les prochaines sessions",
-    href: "/feedback",
+    href: "/feedback/results",
     icon: Megaphone,
-    badge: "Nouveau",
-    badgeVariant: "destructive" as const,
+    badge: "CSR",
+    badgeVariant: "default" as const,
     gradient: "from-rose-500 to-orange-500",
   },
   {

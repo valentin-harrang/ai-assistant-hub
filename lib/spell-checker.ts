@@ -40,10 +40,14 @@ export async function correctSpelling(
       prompt: `Tu es un correcteur orthographique professionnel pour le français.
 
 Consigne stricte : Corrige UNIQUEMENT les fautes d'orthographe et de grammaire dans le texte ci-dessous.
-- Corrige les fautes d'orthographe (exemple : "faute" → "fautes")
-- Corrige les accords de genre (masculin/féminin) et de nombre (singulier/pluriel)
+
+RÈGLES DE CORRECTION :
+- Corrige les fautes d'orthographe évidentes (exemple : "faute" → "fautes")
+- Pour les accords de genre et d'adjectifs, identifie d'abord le SUJET ou le NOM auquel l'adjectif se rapporte
+- ATTENTION : "Professeur" est MASCULIN, donc "professeur gentil et patient" (pas "patiente")
 - ATTENTION aux anglicismes : "stack" est FÉMININ en français (une stack, la stack, les stacks utilisées)
-- Corrige les accords des adjectifs et participes passés
+- En cas de doute sur le genre du sujet, NE MODIFIE PAS l'accord de l'adjectif
+- Corrige les accords des participes passés en identifiant le COD
 - Corrige la conjugaison des verbes
 - Ne change PAS le sens, le style ou la structure des phrases
 - Ne traduis PAS

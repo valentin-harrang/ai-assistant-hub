@@ -1260,7 +1260,7 @@ export default function Page() {
                   Dans <code>app/users/page.tsx</code>
                 </p>
                 <pre className="bg-slate-100 dark:bg-slate-800 p-3 rounded text-xs overflow-x-auto">
-                  <code>{`export default function UsersPage() {
+                  <code>{`export default function UsersPage(): JSX.Element {
   return (
     <div>
       <h1>Liste des utilisateurs</h1>
@@ -1283,16 +1283,22 @@ export default function Page() {
                   Fetch de données (Server Component)
                 </h3>
                 <pre className="bg-slate-100 dark:bg-slate-800 p-3 rounded text-xs overflow-x-auto">
-                  <code>{`async function UsersPage() {
+                  <code>{`interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+async function UsersPage(): Promise<JSX.Element> {
   // Fetch côté serveur
   const res = await fetch('https://jsonplaceholder.typicode.com/users');
-  const users = await res.json();
-  
+  const users: User[] = await res.json();
+
   return (
     <div>
       <h1>Liste des utilisateurs</h1>
       <ul>
-        {users.map(user => (
+        {users.map((user: User) => (
           <li key={user.id}>{user.name}</li>
         ))}
       </ul>
@@ -1322,9 +1328,9 @@ export default function Page() {
 
 import { useState } from 'react';
 
-export function LikeButton() {
-  const [likes, setLikes] = useState(0);
-  
+export function LikeButton(): JSX.Element {
+  const [likes, setLikes] = useState<number>(0);
+
   return (
     <button onClick={() => setLikes(likes + 1)}>
       ❤️ {likes} likes
@@ -1338,15 +1344,21 @@ export function LikeButton() {
                 <pre className="bg-slate-100 dark:bg-slate-800 p-3 rounded text-xs overflow-x-auto">
                   <code>{`import { LikeButton } from '@/components/like-button';
 
-async function UsersPage() {
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+async function UsersPage(): Promise<JSX.Element> {
   const res = await fetch('...');
-  const users = await res.json();
-  
+  const users: User[] = await res.json();
+
   return (
     <div>
       <h1>Liste des utilisateurs</h1>
       <ul>
-        {users.map(user => (
+        {users.map((user: User) => (
           <li key={user.id}>
             {user.name} <LikeButton />
           </li>

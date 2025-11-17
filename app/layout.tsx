@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Next.js Studio",
   description:
-    "Découvrez trois façons d'intégrer l'IA avec Next.js : CSR, SSR et SSG",
+    "Découvrez quatre façons d'intégrer l'IA avec Next.js : CSR, SSR, SSG et ISR",
 };
 
 export default function RootLayout({

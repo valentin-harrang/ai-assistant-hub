@@ -1150,6 +1150,39 @@ export const ressources: Ressource[] = [
       textDark: "dark:text-blue-400",
     },
   },
+  {
+    slug: "opencode",
+    name: "OpenCode",
+    category: "AI Code Generation",
+    icon: Terminal,
+    description: "Agent IA open source pour écrire et exécuter du code depuis le terminal",
+    longDescription:
+      "OpenCode est un agent IA open source qui permet aux développeurs d'écrire et d'exécuter du code directement depuis le terminal. Avec plus de 30 000 étoiles GitHub et 300 000 développeurs mensuels, il offre un contrôle total sur les fournisseurs et les modèles IA, tout en garantissant la confidentialité (aucune donnée stockée).",
+    website: "https://opencode.ai/",
+    useCases: [
+      "Développement depuis le terminal",
+      "Exécution de code avec assistance IA",
+      "Sessions parallèles sur le même projet",
+      "Débogage avec sessions partageables",
+      "Développement en environnement sécurisé",
+    ],
+    features: [
+      "Interface TUI native et thémable",
+      "LSP activé automatiquement",
+      "Support de 75+ fournisseurs LLM",
+      "Modèles locaux via Models.dev",
+      "Architecture privacy-first",
+      "Multi-sessions parallèles",
+      "Sessions partageables",
+      "Compatible avec tous les IDE",
+    ],
+    color: {
+      bg: "bg-indigo-100",
+      bgDark: "dark:bg-indigo-900/30",
+      text: "text-indigo-600",
+      textDark: "dark:text-indigo-400",
+    },
+  },
 ];
 
 export const categories = [
